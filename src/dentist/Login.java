@@ -12,6 +12,9 @@ public class Login {
     	String DB="jdbc:mysql://stusql.dcs.shef.ac.uk/team022?user=dbuser&password=10060fee";
     	
     	Conn = DriverManager.getConnection(DB);
+
+        System.out.println("Can i push tho?");
+        System.out.println("Push worked");
     	
     }
 
