@@ -26,6 +26,7 @@ public class LoginRevised extends JFrame {
 	private static JPasswordField passwordField;
 	private JButton btnNewButton;
 	private JButton btnQuit;
+	private JLabel lblNewLabel = new JLabel();
 
 	/**
 	 * Launch the application.
@@ -37,6 +38,7 @@ public class LoginRevised extends JFrame {
 				try {
 					LoginRevised window = new LoginRevised();
 					window.fSystemLoginRevised.setVisible(true);
+					// when the frame loads, set focus to the password field
 					window.fSystemLoginRevised.addWindowListener( new WindowAdapter() {
 			            public void windowOpened( WindowEvent e ){
 			            	passwordField.requestFocus();
@@ -54,6 +56,7 @@ public class LoginRevised extends JFrame {
 	 * Create the application.
 	 */
 	public LoginRevised() {
+		// centre the frame
 		this.setLocationRelativeTo(null);
 		initialize();
 	}
@@ -62,71 +65,62 @@ public class LoginRevised extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		addWindowListener( new WindowAdapter() {
-            public void windowOpened( WindowEvent e ){
-            	btnNewButton.requestFocus();
-            }
-        }); 
-		
-		
+		setupMainFrame();
+		setupLargeCurrentlySelectedUser();
+		setupComboBox();
+		setupSubmitButton();
+		setupPasswordField();
+		setupQuitButton();
+	}
+	
+	private void setupMainFrame() {
+		// Username title
 		fSystemLoginRevised = new JFrame();
-		fSystemLoginRevised.setForeground(Color.YELLOW);
-		fSystemLoginRevised.getContentPane().setForeground(Color.YELLOW);
-		fSystemLoginRevised.setTitle("System LoginRevised");
+		fSystemLoginRevised.setTitle("System Login");
 		fSystemLoginRevised.setBounds(100, 100, 652, 593);
 		fSystemLoginRevised.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fSystemLoginRevised.getContentPane().setLayout(null);
 		fSystemLoginRevised.setLocationRelativeTo(null);
-		
+	}
+	
+	private void setupLargeCurrentlySelectedUser() {
 		// setup currently selected user
-		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setText("Reception");  
 		lblNewLabel.setFont(new Font("Menlo", Font.BOLD, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(157, 6, 337, 130);
 		fSystemLoginRevised.getContentPane().add(lblNewLabel);
-
-		       
+	}
+	
+	private void setupComboBox() {
 		// setup the combo box
 		String[] users = {"Reception", "Dentist", "Hygienist"}; // options in dropdown
 		JComboBox comboBox = new JComboBox(users);
 		comboBox.setFont(new Font("Menlo", Font.PLAIN, 13));
 		comboBox.setBounds(167, 145, 317, 26);
 		fSystemLoginRevised.getContentPane().add(comboBox);
-        comboBox.setSelectedIndex(0); // set default selection to Reception
-        comboBox.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		lblNewLabel.setText((String)comboBox.getSelectedItem());
-        	}
-        });
-        
-        
-		
-		
-		
-        passwordField = new JPasswordField();
-		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
-		passwordField.setToolTipText("Enter Password");
-		passwordField.setText("Enter Password");
-		passwordField.setBounds(167, 189, 264, 26);
-		
-		fSystemLoginRevised.getContentPane().add(passwordField);
-		
-		
+		comboBox.setSelectedIndex(0); // set default selection to Reception
+		comboBox.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			lblNewLabel.setText((String)comboBox.getSelectedItem());
+			}
+		});
+	}
+	
+	private void setupSubmitButton() {
+		// setup the submit password button
 		btnNewButton = new JButton(">");
 		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
-		btnNewButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fSystemLoginRevised.dispose();
-            }
-        });
-		
-		
-		
 		btnNewButton.setBounds(432, 189, 52, 29);
+		btnNewButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			fSystemLoginRevised.dispose();
+			}
+		});            
 		fSystemLoginRevised.getContentPane().add(btnNewButton);
-		
+	}
+	
+	private void setupQuitButton() {
 		btnQuit = new JButton("Quit");
 		btnQuit.setBounds(6, 536, 75, 29);
 		btnQuit.addActionListener(new ActionListener() {
@@ -134,9 +128,22 @@ public class LoginRevised extends JFrame {
                 fSystemLoginRevised.dispose();
             }
         });
-		
-		
-		
 		fSystemLoginRevised.getContentPane().add(btnQuit);
 	}
+	
+	private void setupPasswordField() {
+		// setup the password field
+        passwordField = new JPasswordField();
+		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
+		passwordField.setToolTipText("Enter Password");
+		passwordField.setText("Enter Password");
+		passwordField.setBounds(167, 189, 264, 26);
+		
+		fSystemLoginRevised.getContentPane().add(passwordField);
+	}
 }
+
+
+
+
+
