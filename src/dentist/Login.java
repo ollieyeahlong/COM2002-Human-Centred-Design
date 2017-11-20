@@ -69,11 +69,12 @@ public class Login extends JFrame {
     
     private void makeCentre() {
     	JPanel centrePanel = new JPanel(new BorderLayout()); // panel for the dropdown
-        centrePanel.setMaximumSize(new Dimension(400, 0));
+        //centrePanel.setMaximumSize(new Dimension(400, 0));
         centrePanel.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25)); // border around the panel
         
         String[] users = {"Reception", "Dentist", "Hygienist"}; // options in dropdown
         JComboBox userList = new JComboBox(users);
+        userList.setBorder(BorderFactory.createEmptyBorder(125, 0, 125, 0));
         userList.setSelectedIndex(0); // set default selection to Reception
         userList.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
