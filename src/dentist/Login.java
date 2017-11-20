@@ -3,64 +3,36 @@ package dentist;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-// some stupid warning kept coming up. so its been stopped
-@SuppressWarnings("unchecked")
 
-public class Login extends JFrame implements ActionListener {
+public class Login extends JFrame {
 
-    JLabel hint;
+	private Container contentPane;
+    private JLabel userLabel;
 
     // make the user interface
     public Login() {
         initUI();
     }
-
-    // action detection for when the dropdown(combobox) is interacted with
-    // this code should be moved next to the combo
-    public void actionPerformed(ActionEvent e) {
-        JComboBox cb = (JComboBox)e.getSource(); // fetch the combobox
-        String userName = (String)cb.getSelectedItem(); // get the currently selected string 
-        updateLabel(userName);
-    }
-
-    // set the large label at top to the string in dropdown box
-    protected void updateLabel(String name) {
-        hint.setText(name);
-    }
     
     // making the ui
     private void initUI() {
-        // panel that contains the user name at the top
-        JPanel labelPanel = new JPanel(new BorderLayout());
-        labelPanel.setMaximumSize(new Dimension(400, 0));
-        labelPanel.setBorder(BorderFactory.createEmptyBorder(25, 25, 0, 0));
-        // labelPanel.add(userLabel, BorderLayout.NORTH);
-
-
+    	
+    	setTitle("Login");
+        setSize(new Dimension(500, 500));
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         
-        String[] users = { "Reception", "Other guys"}; // options in dropdown
-        JPanel comboPanel = new JPanel(new BorderLayout()); // panel for the dropdown
-        comboPanel.setMaximumSize(new Dimension(400, 0));
-        comboPanel.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25)); // border around the panel
-        // make a combobox
-        JComboBox userList = new JComboBox(users);
-        userList.setSelectedIndex(0); // set default selection to Reception
-        userList.addActionListener(this);
-        comboPanel.add(userList); // add to the comboPanel
+        contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
+    	
+		makeHeader();
+		makeCentre();
+		makeFooter();
 
-
-        JPanel basic = new JPanel();
-        basic.setLayout(new BoxLayout(basic, BoxLayout.Y_AXIS));
-        add(basic);
-
-        JPanel topPanel = new JPanel(new BorderLayout(0, 0));
-        topPanel.setMaximumSize(new Dimension(750, 0));
-        hint = new JLabel();
-        updateLabel(users[userList.getSelectedIndex()]);
-        hint.setFont (hint.getFont ().deriveFont (50.0f));
-        hint.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
-        topPanel.add(hint);
-
+		setVisible(true);
+        
+        /*
         // password enter
         // there is more stuff here potentially
         // but not much point
@@ -79,72 +51,66 @@ public class Login extends JFrame implements ActionListener {
         JButton b1 = new JButton("Go");
         // when the go button is selected frame is closed
         // when there are more windows it will go to the relevant one
-        b1.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        b1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
         passwordPanel.add(b1, BorderLayout.EAST);
-
+        */        
+    }
+    
+    private void makeHeader() {
+    	// panel that contains the user name at the top
+    	JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    	topPanel.setMaximumSize(new Dimension(750, 0));
+    	
+    	userLabel = new JLabel();
+        userLabel.setText("Reception");         
+        userLabel.setFont (userLabel.getFont ().deriveFont (50.0f));
+        userLabel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        topPanel.add(userLabel);
         
-
-
-
-        JSeparator separator = new JSeparator();
-        separator.setForeground(Color.gray);
-
-        topPanel.add(separator, BorderLayout.SOUTH);
+        contentPane.add(topPanel, BorderLayout.NORTH);
+    }
+    
+    private void makeCentre() {
+    	JPanel centrePanel = new JPanel(new BorderLayout()); // panel for the dropdown
+        centrePanel.setMaximumSize(new Dimension(400, 0));
+        centrePanel.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25)); // border around the panel
         
-        basic.add(topPanel);
-        basic.add(labelPanel);
-        basic.add(comboPanel);
-        basic.add(passwordPanel);
-        // basic.add(submitButton);
+        String[] users = {"Reception", "Dentist", "Hygienist"}; // options in dropdown
+        JComboBox userList = new JComboBox(users);
+        userList.setSelectedIndex(0); // set default selection to Reception
+        userList.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		userLabel.setText((String)userList.getSelectedItem());
+        	}
+        });
+        centrePanel.add(userList); // add to the centrePanel
         
-
-        JPanel boxPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 0));
-        
-        basic.add(boxPanel);
-
-        JPanel bottom = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        contentPane.add(centrePanel, BorderLayout.CENTER);
+    }
+    
+    private void makeFooter() {
+    	JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    	bottomPanel.setMaximumSize(new Dimension(750, 0));
         
         // Quit button
         JButton quitButton = new JButton("Quit");
-        quitButton.addActionListener((ActionEvent event) -> {
-            System.exit(0);
+        quitButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		System.exit(0);
+        	}            
         });
-
-        bottom.add(quitButton);
-        basic.add(bottom);
-
-        bottom.setMaximumSize(new Dimension(750, 0));
-        // details for the frame
-        setTitle("Welcome");
-        setSize(new Dimension(750, 500));
-        setResizable(false);
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        setLocationRelativeTo(null);
+        
+        bottomPanel.add(quitButton);
+        
+        contentPane.add(bottomPanel, BorderLayout.SOUTH);
     }
     
-
     public static void main(String[] args) {
-        // Database stuff that I was getting errors from.
-        // Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-    	
-    	// String DB="jdbc:mysql://stusql.dcs.shef.ac.uk/team022?user=dbuser&password=10060fee";
-    	
-        // Conn = DriverManager.getConnection(DB);
-
-        // apparently its better to run this way?
-                SwingUtilities.invokeLater(new Runnable() {
-                    
-                    public void run() {
-                        Login go = new Login();
-                        go.setVisible(true);
-                        
-                    }
-                });
-            }
+    	Login login = new Login();
+    }
+    
 }
