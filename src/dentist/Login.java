@@ -48,14 +48,7 @@ public class Login extends JFrame {
             }
         }); 
         passwordPanel.add(passwordField, BorderLayout.WEST);
-        JButton b1 = new JButton("Go");
-        // when the go button is selected frame is closed
-        // when there are more windows it will go to the relevant one
-        b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
+        
         passwordPanel.add(b1, BorderLayout.EAST);
         */        
     }
@@ -87,7 +80,15 @@ public class Login extends JFrame {
         		userLabel.setText((String)userList.getSelectedItem());
         	}
         });
-        centrePanel.add(userList); // add to the centrePanel
+        centrePanel.add(userList, BorderLayout.CENTER); // add to the centrePanel
+        
+        JButton login = new JButton("Login");
+        login.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
+        centrePanel.add(login, BorderLayout.SOUTH);
         
         contentPane.add(centrePanel, BorderLayout.CENTER);
     }
