@@ -23,7 +23,7 @@ import java.awt.Color;
 public class LoginRevised extends JFrame {
 
 	private JFrame fSystemLoginRevised;
-	private JPasswordField passwordField;
+	private static JPasswordField passwordField;
 	private JButton btnNewButton;
 	private JButton btnQuit;
 
@@ -37,6 +37,11 @@ public class LoginRevised extends JFrame {
 				try {
 					LoginRevised window = new LoginRevised();
 					window.fSystemLoginRevised.setVisible(true);
+					window.fSystemLoginRevised.addWindowListener( new WindowAdapter() {
+			            public void windowOpened( WindowEvent e ){
+			            	passwordField.requestFocus();
+			            }
+			        }); 
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,6 +62,12 @@ public class LoginRevised extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		addWindowListener( new WindowAdapter() {
+            public void windowOpened( WindowEvent e ){
+            	btnNewButton.requestFocus();
+            }
+        }); 
 		
 		
 		fSystemLoginRevised = new JFrame();
@@ -90,11 +101,7 @@ public class LoginRevised extends JFrame {
         	}
         });
         
-        addWindowListener( new WindowAdapter() {
-            public void windowOpened( WindowEvent e ){
-                passwordField.requestFocus();
-            }
-        }); 
+        
 		
 		
 		
@@ -104,14 +111,8 @@ public class LoginRevised extends JFrame {
 		passwordField.setText("Enter Password");
 		passwordField.setBounds(167, 189, 264, 26);
 		
-
-		
 		fSystemLoginRevised.getContentPane().add(passwordField);
-		addWindowListener( new WindowAdapter() {
-            public void windowOpened( WindowEvent e ){
-                passwordField.requestFocus();
-            }
-        }); 
+		
 		
 		btnNewButton = new JButton(">");
 		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
