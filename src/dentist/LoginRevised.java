@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
-public class LoginRevised {
+public class LoginRevised extends JFrame {
 
 	private JFrame fSystemLoginRevised;
 	private JPasswordField passwordField;
@@ -29,6 +29,7 @@ public class LoginRevised {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -45,6 +46,7 @@ public class LoginRevised {
 	 * Create the application.
 	 */
 	public LoginRevised() {
+		this.setLocationRelativeTo(null);
 		initialize();
 	}
 
@@ -59,6 +61,7 @@ public class LoginRevised {
 		fSystemLoginRevised.setBounds(100, 100, 652, 593);
 		fSystemLoginRevised.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fSystemLoginRevised.getContentPane().setLayout(null);
+		fSystemLoginRevised.setLocationRelativeTo(null);
 		
 		// setup currently selected user
 		JLabel lblNewLabel = new JLabel();
