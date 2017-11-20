@@ -55,13 +55,13 @@ public class Login extends JFrame {
     
     private void makeHeader() {
     	// panel that contains the user name at the top
-    	JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    	JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
     	topPanel.setMaximumSize(new Dimension(750, 0));
     	
     	userLabel = new JLabel();
         userLabel.setText("Reception");         
         userLabel.setFont (userLabel.getFont ().deriveFont (50.0f));
-        userLabel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        userLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         topPanel.add(userLabel);
         
         contentPane.add(topPanel, BorderLayout.NORTH);
@@ -99,7 +99,7 @@ public class Login extends JFrame {
         
         // Quit button
         JButton quitButton = new JButton("Quit");
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
         quitButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		System.exit(0);
