@@ -100,7 +100,7 @@ public class Login extends JFrame {
         
         // Quit button
         JButton quitButton = new JButton("Quit");
-        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 25, 0, 0));
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         quitButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		System.exit(0);
