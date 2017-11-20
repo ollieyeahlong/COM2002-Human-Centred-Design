@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Color;
@@ -35,6 +37,7 @@ public class LoginRevised extends JFrame {
 				try {
 					LoginRevised window = new LoginRevised();
 					window.fSystemLoginRevised.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,6 +57,8 @@ public class LoginRevised extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
 		fSystemLoginRevised = new JFrame();
 		fSystemLoginRevised.setForeground(Color.YELLOW);
 		fSystemLoginRevised.getContentPane().setForeground(Color.YELLOW);
@@ -84,14 +89,29 @@ public class LoginRevised extends JFrame {
         		lblNewLabel.setText((String)comboBox.getSelectedItem());
         	}
         });
+        
+        addWindowListener( new WindowAdapter() {
+            public void windowOpened( WindowEvent e ){
+                passwordField.requestFocus();
+            }
+        }); 
 		
 		
 		
-		passwordField = new JPasswordField();
+        passwordField = new JPasswordField();
+		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setToolTipText("Enter Password");
 		passwordField.setText("Enter Password");
 		passwordField.setBounds(167, 189, 264, 26);
+		
+
+		
 		fSystemLoginRevised.getContentPane().add(passwordField);
+		addWindowListener( new WindowAdapter() {
+            public void windowOpened( WindowEvent e ){
+                passwordField.requestFocus();
+            }
+        }); 
 		
 		btnNewButton = new JButton(">");
 		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -113,6 +133,9 @@ public class LoginRevised extends JFrame {
                 fSystemLoginRevised.dispose();
             }
         });
+		
+		
+		
 		fSystemLoginRevised.getContentPane().add(btnQuit);
 	}
 }
