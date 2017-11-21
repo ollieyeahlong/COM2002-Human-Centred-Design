@@ -20,6 +20,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import javax.swing.JTextField;
 
 public class LoginRevised extends JFrame {
 
@@ -58,7 +59,7 @@ public class LoginRevised extends JFrame {
 	 */
 	public LoginRevised() {
 		// centre the frame
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 		initialize();
 	}
 
@@ -116,10 +117,10 @@ public class LoginRevised extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (lblNewLabel.getText().equals("Receptionist")) {
-					Receptionist receptionist = new Receptionist();
+					ReceptionistRevised receptionist = new ReceptionistRevised();
 				}
 				else if (lblNewLabel.getText().equals("Dentist")) {
-					Dentist dentist = new Dentist();
+					ReceptionistRevised dentist = new ReceptionistRevised();
 				}
 				else if (lblNewLabel.getText().equals("Hygienist")) {
 					Hygienist hygienist = new Hygienist();
