@@ -89,7 +89,7 @@ public class LoginRevised extends JFrame {
 		lblNewLabel.setText("Receptionist");  
 		lblNewLabel.setFont(new Font("Menlo", Font.BOLD, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(157, 6, 337, 130);
+		lblNewLabel.setBounds(118, 6, 415, 130);
 		fSystemLoginRevised.getContentPane().add(lblNewLabel);
 	}
 	
