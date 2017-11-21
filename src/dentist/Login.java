@@ -64,6 +64,7 @@ public class Login extends JFrame {
         userLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         topPanel.add(userLabel);
         
+        
         contentPane.add(topPanel, BorderLayout.NORTH);
     }
     
@@ -74,7 +75,7 @@ public class Login extends JFrame {
         
         String[] users = {"Reception", "Dentist", "Hygienist"}; // options in dropdown
         JComboBox userList = new JComboBox(users);
-        userList.setBorder(BorderFactory.createEmptyBorder(125, 0, 125, 0));
+        userList.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         userList.setSelectedIndex(0); // set default selection to Reception
         userList.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -100,6 +101,7 @@ public class Login extends JFrame {
         
         // Quit button
         JButton quitButton = new JButton("Quit");
+        //quitButton.setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         quitButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -115,5 +117,4 @@ public class Login extends JFrame {
     public static void main(String[] args) {
     	Login login = new Login();
     }
-    
 }
