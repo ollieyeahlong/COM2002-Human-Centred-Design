@@ -87,7 +87,7 @@ public class LoginRevised extends JFrame {
 	private void setupLargeCurrentlySelectedUser() {
 		// setup currently selected user
 		lblNewLabel.setText("Receptionist");  
-		lblNewLabel.setFont(new Font("Menlo", Font.BOLD, 50));
+		lblNewLabel.setFont(new Font("Menlo", Font.BOLD, 44));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(118, 6, 415, 130);
 		fSystemLoginRevised.getContentPane().add(lblNewLabel);
