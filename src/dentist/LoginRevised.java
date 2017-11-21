@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -85,7 +86,7 @@ public class LoginRevised extends JFrame {
 	
 	private void setupLargeCurrentlySelectedUser() {
 		// setup currently selected user
-		lblNewLabel.setText("Reception");  
+		lblNewLabel.setText("Receptionist");  
 		lblNewLabel.setFont(new Font("Menlo", Font.BOLD, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(157, 6, 337, 130);
@@ -94,7 +95,7 @@ public class LoginRevised extends JFrame {
 	
 	private void setupComboBox() {
 		// setup the combo box
-		String[] users = {"Reception", "Dentist", "Hygienist"}; // options in dropdown
+		String[] users = {"Receptionist", "Dentist", "Hygienist"}; // options in dropdown
 		JComboBox comboBox = new JComboBox(users);
 		comboBox.setFont(new Font("Menlo", Font.PLAIN, 13));
 		comboBox.setBounds(167, 145, 317, 26);
@@ -113,8 +114,18 @@ public class LoginRevised extends JFrame {
 		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
 		btnNewButton.setBounds(432, 189, 52, 29);
 		btnNewButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			fSystemLoginRevised.dispose();
+			public void actionPerformed(ActionEvent e) {
+				if (lblNewLabel.getText().equals("Receptionist")) {
+					Receptionist receptionist = new Receptionist();
+				}
+				else if (lblNewLabel.getText().equals("Dentist")) {
+					Dentist dentist = new Dentist();
+				}
+				else if (lblNewLabel.getText().equals("Hygienist")) {
+					Hygienist hygienist = new Hygienist();
+				}
+				
+				fSystemLoginRevised.dispose();
 			}
 		});            
 		fSystemLoginRevised.getContentPane().add(btnNewButton);
@@ -142,8 +153,3 @@ public class LoginRevised extends JFrame {
 		fSystemLoginRevised.getContentPane().add(passwordField);
 	}
 }
-
-
-
-
-

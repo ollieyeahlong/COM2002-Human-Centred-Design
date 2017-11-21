@@ -59,7 +59,7 @@ public class Login extends JFrame {
     	topPanel.setMaximumSize(new Dimension(750, 0));
     	
     	userLabel = new JLabel();
-        userLabel.setText("Reception");         
+        userLabel.setText("Receptionist");         
         userLabel.setFont (userLabel.getFont ().deriveFont (50.0f));
         userLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         topPanel.add(userLabel);
@@ -73,7 +73,7 @@ public class Login extends JFrame {
         //centrePanel.setMaximumSize(new Dimension(400, 0));
         centrePanel.setBorder(BorderFactory.createEmptyBorder(5, 25, 15, 25)); // border around the panel
         
-        String[] users = {"Reception", "Dentist", "Hygienist"}; // options in dropdown
+        String[] users = {"Receptionist", "Dentist", "Hygienist"}; // options in dropdown
         JComboBox userList = new JComboBox(users);
         userList.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         userList.setSelectedIndex(0); // set default selection to Reception
@@ -87,7 +87,18 @@ public class Login extends JFrame {
         JButton login = new JButton("Login");
         login.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+            	if (userLabel.getText().equals("Receptionist")) {
+					Receptionist receptionist = new Receptionist();
+					System.out.println("test");
+				}
+				else if (userLabel.getText().equals("Dentist")) {
+					Dentist dentist = new Dentist();
+				}
+				else if (userLabel.getText().equals("Hygienist")) {
+					Hygienist hygienist = new Hygienist();
+				}
+            	
+            	dispose();
             }
         });
         centrePanel.add(login, BorderLayout.SOUTH);
