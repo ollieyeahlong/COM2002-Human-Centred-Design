@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import javax.swing.JTextField;
 
-public class LoginRevised extends JFrame {
+public class Login extends JFrame {
 
 	private JFrame fSystemLoginRevised;
 	private static JPasswordField passwordField;
@@ -38,7 +38,7 @@ public class LoginRevised extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginRevised window = new LoginRevised();
+					Login window = new Login();
 					window.fSystemLoginRevised.setVisible(true);
 					// when the frame loads, set focus to the password field
 					window.fSystemLoginRevised.addWindowListener( new WindowAdapter() {
@@ -57,7 +57,7 @@ public class LoginRevised extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public LoginRevised() {
+	public Login() {
 		// centre the frame
 		setLocationRelativeTo(null);
 		initialize();
@@ -103,24 +103,24 @@ public class LoginRevised extends JFrame {
 		fSystemLoginRevised.getContentPane().add(comboBox);
 		comboBox.setSelectedIndex(0); // set default selection to Reception
 		comboBox.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			lblNewLabel.setText((String)comboBox.getSelectedItem());
+			public void actionPerformed(ActionEvent e) {
+				lblNewLabel.setText((String)comboBox.getSelectedItem());
 			}
 		});
 	}
 	
 	private void setupSubmitButton() {
 		// setup the submit password button
-		btnNewButton = new JButton(">");
+		btnNewButton = new JButton("Login");
 		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
 		btnNewButton.setBounds(432, 189, 52, 29);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (lblNewLabel.getText().equals("Receptionist")) {
-					ReceptionistRevised receptionist = new ReceptionistRevised();
+					Receptionist receptionist = new Receptionist();
 				}
 				else if (lblNewLabel.getText().equals("Dentist")) {
-					ReceptionistRevised dentist = new ReceptionistRevised();
+					Dentist dentist = new Dentist();
 				}
 				else if (lblNewLabel.getText().equals("Hygienist")) {
 					Hygienist hygienist = new Hygienist();
@@ -148,7 +148,6 @@ public class LoginRevised extends JFrame {
         passwordField = new JPasswordField();
 		passwordField.setHorizontalAlignment(SwingConstants.CENTER);
 		passwordField.setToolTipText("Enter Password");
-		passwordField.setText("Enter Password");
 		passwordField.setBounds(167, 189, 264, 26);
 		
 		fSystemLoginRevised.getContentPane().add(passwordField);
