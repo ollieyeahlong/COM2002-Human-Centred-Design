@@ -37,8 +37,8 @@ public class Login extends JFrame {
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					Login window = new Login();
+				Login window = new Login();
+				try {	
 					window.fSystemLoginRevised.setVisible(true);
 					// when the frame loads, set focus to the password field
 					window.fSystemLoginRevised.addWindowListener( new WindowAdapter() {
@@ -83,6 +83,7 @@ public class Login extends JFrame {
 		fSystemLoginRevised.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fSystemLoginRevised.getContentPane().setLayout(null);
 		fSystemLoginRevised.setLocationRelativeTo(null);
+		fSystemLoginRevised.setVisible(true);
 	}
 	
 	private void setupLargeCurrentlySelectedUser() {
@@ -134,7 +135,7 @@ public class Login extends JFrame {
 	
 	private void setupQuitButton() {
 		btnQuit = new JButton("Quit");
-		btnQuit.setBounds(6, 536, 75, 29);
+		btnQuit.setBounds(6, 500, 75, 29);
 		btnQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fSystemLoginRevised.dispose();
