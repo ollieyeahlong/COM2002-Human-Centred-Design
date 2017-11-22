@@ -112,7 +112,7 @@ public class Login extends JFrame {
 	
 	private void setupSubmitButton() {
 		// setup the submit password button
-		btnNewButton = new JButton("Login");
+		btnNewButton = new JButton(">");
 		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
 		btnNewButton.setBounds(432, 189, 52, 29);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -135,7 +135,7 @@ public class Login extends JFrame {
 	
 	private void setupQuitButton() {
 		btnQuit = new JButton("Quit");
-		btnQuit.setBounds(6, 500, 75, 29);
+		btnQuit.setBounds(6, 536, 75, 29);
 		btnQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fSystemLoginRevised.dispose();

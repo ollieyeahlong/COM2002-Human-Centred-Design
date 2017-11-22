@@ -89,7 +89,8 @@ public class Receptionist extends JFrame {
 		JButton bookButton = new JButton("New Appointment");
 		bookButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
-				contentFrame.dispose();
+				//contentFrame.dispose();
+				NewAppointment n = new NewAppointment();
 			}
 		});
 		bookButton.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -97,10 +98,10 @@ public class Receptionist extends JFrame {
 		appointmentsView.add(bookButton);
 		//__________________________________________________________________________
 		
-		JButton cancelButton = new JButton("Cancel/Re-Book Appointment");
+		JButton cancelButton = new JButton("Cancel/Re-Book");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
+				CancelReBook cRB = new CancelReBook();
 			}
 		});
 		cancelButton.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -156,7 +157,7 @@ public class Receptionist extends JFrame {
 		JButton registerButton = new JButton("Register Patient");
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
+				RegisterPatient rP = new RegisterPatient();
 			}
 		});
 		registerButton.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -167,7 +168,7 @@ public class Receptionist extends JFrame {
 		JButton amendButton = new JButton("Amend Patient");
 		amendButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
+				AmendPatient ap = new AmendPatient();
 			}
 		});
 		amendButton.setFont(new Font("Menlo", Font.PLAIN, 13));

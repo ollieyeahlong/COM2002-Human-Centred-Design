@@ -1,186 +1,191 @@
 package dentist;
 
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 public class RegisterPatient {
-	private JTextField txtTitle;
-	private JTextField txtForename;
-	private JTextField txtSurname;
-	private JTextField txtDateOfBirth;
-	private JTextField txtContactNumber;
-	private JTextField txtHouseNumber;
-	private JTextField txtStreetName;
-	private JTextField txtDistrictName;
-	private JTextField txtCityName;
-	private JTextField txtPostCode;
+
+	private JFrame frmRegisterNewPatient;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JLabel lblHouseNo;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblCityName;
+	private JLabel lblPostcode;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JButton btnCancel;
 	private JButton btnSubmit;
-	private JButton btnCancelNewPatient;
-	private JPanel newPatientPanel;
-	private Font groupFont = new Font("Menlo", Font.PLAIN, 13);
-	private int numberOfColumn = 10;
-	private JTextField txtStartDate;
-	private JTextField txtStartTime;
-	private JPanel bookPatientPanel;
-	
-	private void makeSearchBarAndButton(JPanel p) {
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+	}
+
+	/**
+	 * Create the application.
+	 * @wbp.parser.entryPoint
+	 */
+	public RegisterPatient() {
+		initialize();
+		frmRegisterNewPatient.setVisible(true);
+		frmRegisterNewPatient.setLocationRelativeTo(null);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmRegisterNewPatient = new JFrame();
+		frmRegisterNewPatient.setTitle("Register New Patient");
+		frmRegisterNewPatient.setBounds(100, 100, 450, 390);
+		frmRegisterNewPatient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmRegisterNewPatient.getContentPane().setLayout(null);
 		
-		newPatientPanel = new JPanel();
-		newPatientPanel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		newPatientPanel.setBackground(Color.RED);
-		newPatientPanel.setForeground(Color.RED);
-		newPatientPanel.setBounds(259, 59, 400, 400);
-		newPatientPanel.setVisible(true);
+		JLabel lblNewLabel = new JLabel("Title");
+		lblNewLabel.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblNewLabel.setBounds(48, 22, 103, 16);
+		frmRegisterNewPatient.getContentPane().add(lblNewLabel);
 		
-		bookPatientPanel = new JPanel();
-		bookPatientPanel.setBackground(Color.GREEN);
-		bookPatientPanel.setBounds(259, 59, 400, 400);
-		bookPatientPanel.setVisible(true);
-		appointmentsView.add(bookPatientPanel);
-		bookPatientPanel.setLayout(null);
+		JLabel lblNewLabel_1 = new JLabel("Forename");
+		lblNewLabel_1.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblNewLabel_1.setBounds(48, 50, 103, 16);
+		frmRegisterNewPatient.getContentPane().add(lblNewLabel_1);
 		
+		JLabel lblSurname = new JLabel("Surname");
+		lblSurname.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblSurname.setBounds(48, 78, 103, 16);
+		frmRegisterNewPatient.getContentPane().add(lblSurname);
 		
-		JButton cancelBookBtn = new JButton("Cancel/Re-Book Appointment");
-		cancelBookBtn.setFont(new Font("Menlo", Font.PLAIN, 13));
-		cancelBookBtn.setBounds(6, 365, 117, 29);
-		cancelBookBtn.addActionListener(new ActionListener() {
+		JLabel lblDob = new JLabel("D.O.B");
+		lblDob.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblDob.setBounds(48, 106, 103, 16);
+		frmRegisterNewPatient.getContentPane().add(lblDob);
+		
+		JLabel lblNewLabel_2 = new JLabel("Contact Number");
+		lblNewLabel_2.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblNewLabel_2.setBounds(48, 134, 130, 16);
+		frmRegisterNewPatient.getContentPane().add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField.setBounds(174, 17, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_1.setBounds(173, 45, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_2.setBounds(174, 73, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_2);
+		textField_2.setColumns(10);
+		
+		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_3.setBounds(174, 101, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_4.setBounds(174, 129, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_4);
+		textField_4.setColumns(10);
+		
+		lblHouseNo = new JLabel("House Number");
+		lblHouseNo.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblHouseNo.setBounds(48, 162, 110, 16);
+		frmRegisterNewPatient.getContentPane().add(lblHouseNo);
+		
+		lblNewLabel_3 = new JLabel("Street Name");
+		lblNewLabel_3.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(48, 190, 103, 16);
+		frmRegisterNewPatient.getContentPane().add(lblNewLabel_3);
+		
+		lblNewLabel_4 = new JLabel("District Name");
+		lblNewLabel_4.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblNewLabel_4.setBounds(48, 218, 130, 16);
+		frmRegisterNewPatient.getContentPane().add(lblNewLabel_4);
+		
+		lblCityName = new JLabel("City Name");
+		lblCityName.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblCityName.setBounds(48, 246, 110, 16);
+		frmRegisterNewPatient.getContentPane().add(lblCityName);
+		
+		lblPostcode = new JLabel("Postcode");
+		lblPostcode.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblPostcode.setBounds(48, 274, 103, 16);
+		frmRegisterNewPatient.getContentPane().add(lblPostcode);
+		
+		textField_5 = new JTextField();
+		textField_5.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_5.setBounds(174, 157, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_5);
+		textField_5.setColumns(10);
+		
+		textField_6 = new JTextField();
+		textField_6.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_6.setBounds(174, 185, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_6);
+		textField_6.setColumns(10);
+		
+		textField_7 = new JTextField();
+		textField_7.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_7.setBounds(174, 213, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_7);
+		textField_7.setColumns(10);
+		
+		textField_8 = new JTextField();
+		textField_8.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_8.setBounds(174, 241, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_8);
+		textField_8.setColumns(10);
+		
+		textField_9 = new JTextField();
+		textField_9.setFont(new Font("Menlo", Font.PLAIN, 13));
+		textField_9.setBounds(174, 269, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(textField_9);
+		textField_9.setColumns(10);
+		
+		btnCancel = new JButton("Cancel");
+		btnCancel.setFont(new Font("Menlo", Font.PLAIN, 13));
+		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
+				frmRegisterNewPatient.dispose();
 			}
-		});   
-		bookPatientPanel.add(cancelBookBtn);
+		});
+		btnCancel.setBounds(6, 333, 117, 29);
+		frmRegisterNewPatient.getContentPane().add(btnCancel);
 		
-		
-		JButton submitBookBtn = new JButton(">");
-		submitBookBtn.setFont(new Font("Menlo", Font.PLAIN, 13));
-		submitBookBtn.setBounds(278, 365, 117, 29);
-		submitBookBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bookPatientPanel.setVisible(false);
-			}
-		});  
-		bookPatientPanel.add(submitBookBtn);
-		String[] person = {"Mr J O EVANS"}; // would be in database 
-		JComboBox comboBox = new JComboBox(person);
-		comboBox.setFont(new Font("Menlo", Font.PLAIN, 13));
-		comboBox.setBounds(6, 6, 389, 27);
-		bookPatientPanel.add(comboBox);
-		
-		txtStartDate = new JTextField();
-		txtStartDate.setText("Start date");
-		txtStartDate.setBounds(7, 45, 388, 26);
-		bookPatientPanel.add(txtStartDate);
-		txtStartDate.setColumns(10);
-		
-		txtStartTime = new JTextField();
-		txtStartTime.setText("Start time");
-		txtStartTime.setBounds(6, 75, 389, 26);
-		bookPatientPanel.add(txtStartTime);
-		txtStartTime.setColumns(10);
-		newPatientPanel.setLayout(null);
-		appointmentsView.add(newPatientPanel);
-		// Field for patient title
-		txtTitle = new JTextField();
-		txtTitle.setFont(groupFont);
-		txtTitle.setText("Title");
-		txtTitle.setColumns(numberOfColumn);
-		txtTitle.setBounds(7, 12, 388, 26);
-		newPatientPanel.add(txtTitle);
-		
-		// Field for forename
-		txtForename = new JTextField();
-		txtForename.setFont(groupFont);
-		txtForename.setText("Forename");
-		txtForename.setBounds(7, 41, 388, 26);
-		newPatientPanel.add(txtForename);
-		txtForename.setColumns(numberOfColumn);
-		
-		// Field for surname
-		txtSurname = new JTextField();
-		txtSurname.setFont(groupFont);
-		txtSurname.setText("Surname");
-		txtSurname.setBounds(7, 69, 388, 26);
-		newPatientPanel.add(txtSurname);
-		txtSurname.setColumns(numberOfColumn);
-		
-		// Field for DOB
-		txtDateOfBirth = new JTextField();
-		txtDateOfBirth.setFont(groupFont);
-		txtDateOfBirth.setText("Date Of Birth");
-		txtDateOfBirth.setBounds(7, 97, 388, 26);
-		newPatientPanel.add(txtDateOfBirth);
-		txtDateOfBirth.setColumns(10);
-		
-		// Field for contact number
-		txtContactNumber = new JTextField();
-		txtContactNumber.setFont(groupFont);
-		txtContactNumber.setText("Contact Number");
-		txtContactNumber.setBounds(7, 125, 388, 26);
-		newPatientPanel.add(txtContactNumber);
-		txtContactNumber.setColumns(10);
-		
-		// Field for house number
-		txtHouseNumber = new JTextField();
-		txtHouseNumber.setFont(groupFont);
-		txtHouseNumber.setText("House Number");
-		txtHouseNumber.setBounds(6, 202, 380, 26);
-		newPatientPanel.add(txtHouseNumber);
-		txtHouseNumber.setColumns(10);
-		
-		// Field for street name
-		txtStreetName = new JTextField();
-		txtStreetName.setFont(groupFont);
-		txtStreetName.setText("Street Name");
-		txtStreetName.setBounds(6, 229, 382, 26);
-		newPatientPanel.add(txtStreetName);
-		txtStreetName.setColumns(10);
-		
-		// Field for district name
-		txtDistrictName = new JTextField();
-		txtDistrictName.setFont(groupFont);
-		txtDistrictName.setText("District Name");
-		txtDistrictName.setBounds(6, 258, 382, 26);
-		newPatientPanel.add(txtDistrictName);
-		txtDistrictName.setColumns(10);
-		
-		// Field for city name
-		txtCityName = new JTextField();
-		txtCityName.setFont(groupFont);
-		txtCityName.setText("City Name");
-		txtCityName.setBounds(6, 286, 378, 26);
-		newPatientPanel.add(txtCityName);
-		txtCityName.setColumns(10);
-		
-		// Field for post code
-		txtPostCode = new JTextField();
-		txtPostCode.setFont(groupFont);
-		txtPostCode.setText("Postcode");
-		txtPostCode.setBounds(6, 311, 375, 26);
-		newPatientPanel.add(txtPostCode);
-		txtPostCode.setColumns(10);
-		// Submit buttons
-		btnSubmit = new JButton(">");
+		btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Menlo", Font.PLAIN, 13));
-		btnSubmit.setBounds(278, 365, 117, 29);
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				newPatientPanel.setVisible(false);
+				frmRegisterNewPatient.dispose();
 			}
-		});   
-		newPatientPanel.add(btnSubmit);
-		
-		btnCancelNewPatient = new JButton("Cancel");
-		btnCancelNewPatient.setFont(new Font("Menlo", Font.PLAIN, 13));
-		btnCancelNewPatient.setBounds(6, 365, 117, 29);
-		btnCancelNewPatient.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				newPatientPanel.setVisible(false);
-			}
-		});   
-		newPatientPanel.add(btnCancelNewPatient);
-		
+		});
+		btnSubmit.setBounds(327, 333, 117, 29);
+		frmRegisterNewPatient.getContentPane().add(btnSubmit);
 	}
+
 }
