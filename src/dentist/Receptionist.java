@@ -132,6 +132,16 @@ public class Receptionist extends JFrame {
 		patientsView.setBorder(null);
 		patientsView.setLayout(null);
 		tabbedPane.addTab("Patients", patientsView);
+		
+		JButton btnNewButton = new JButton("Healthcare Plan");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HealthcarePlan hcp = new HealthcarePlan();
+			}
+		});
+		btnNewButton.setFont(new Font("Menlo", Font.PLAIN, 13));
+		btnNewButton.setBounds(6, 236, 155, 29);
+		patientsView.add(btnNewButton);
 		//__________________________________________________________________________
 		
 		txtSearchForPatient = new JTextField();
