@@ -41,6 +41,9 @@ public class Patient {
 
             stmt.executeUpdate();
             
+            // THIS IS WHERE SHIT HITS THE FAN OLLIE. IT TRIES TO AUTO POPULATE THE PATIENT NUMBER WITH THE DEFAULT KEY, WHICH HAS ALREADY BEEN USED
+            // IS IT REALLY THAT MUCH OF A PROBEL TO JUST HAVE GAPS IN OUR ID?
+            // SURELY AS LONG AS THE ID IS CONSISTENT THEN ITS FINE
             
 
             ResultSet rs = stmt.getGeneratedKeys();
