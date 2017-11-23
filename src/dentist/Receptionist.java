@@ -1,11 +1,17 @@
 package dentist;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -127,6 +133,11 @@ public class Receptionist extends JFrame {
 		//__________________________________________________________________________
 	}
 	
+	private boolean validateString(String surname) {
+		boolean surnameTrue = !surname.isEmpty();
+		return surnameTrue;
+	}
+	
 	private void makePatientsView() {
 		patientsView = new JPanel();
 		patientsView.setBorder(null);
@@ -147,18 +158,19 @@ public class Receptionist extends JFrame {
 		txtSearchForPatient = new JTextField();
 		txtSearchForPatient.setForeground(Color.BLACK);
 		txtSearchForPatient.setFont(new Font("Menlo", Font.ITALIC, 13));
-		txtSearchForPatient.setText("Search For Patient");
+		txtSearchForPatient.setText("Search For Patient By Surname");
 		txtSearchForPatient.setBounds(19, 19, 569, 26);
 		txtSearchForPatient.setColumns(10);
 		patientsView.add(txtSearchForPatient);
 		//__________________________________________________________________________
 		
+		
+		
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
-			}
-		});
+		}});
+		
 		searchButton.setFont(new Font("Menlo", Font.PLAIN, 13));
 		searchButton.setBounds(600, 19, 117, 29);
 		patientsView.add(searchButton);

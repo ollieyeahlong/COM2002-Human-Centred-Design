@@ -4,20 +4,24 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
 public class RegisterPatient {
-
+	
 	private JFrame frmRegisterNewPatient;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField titleTextField;
+	private JTextField forenameTextField;
+	private JTextField surnameTextField;
+	private JTextField dobTextField;
+	private JTextField contactNumberTextField;
 	private JLabel lblHouseNo;
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
@@ -36,6 +40,8 @@ public class RegisterPatient {
 	 */
 	public static void main(String[] args) {
 	}
+	
+
 
 	/**
 	 * Create the application.
@@ -82,35 +88,35 @@ public class RegisterPatient {
 		lblNewLabel_2.setBounds(48, 134, 130, 16);
 		frmRegisterNewPatient.getContentPane().add(lblNewLabel_2);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField.setBounds(174, 17, 239, 26);
-		frmRegisterNewPatient.getContentPane().add(textField);
-		textField.setColumns(10);
+		titleTextField = new JTextField();
+		titleTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
+		titleTextField.setBounds(174, 17, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(titleTextField);
+		titleTextField.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_1.setBounds(173, 45, 239, 26);
-		frmRegisterNewPatient.getContentPane().add(textField_1);
-		textField_1.setColumns(10);
+		forenameTextField = new JTextField();
+		forenameTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
+		forenameTextField.setBounds(173, 45, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(forenameTextField);
+		forenameTextField.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_2.setBounds(174, 73, 239, 26);
-		frmRegisterNewPatient.getContentPane().add(textField_2);
-		textField_2.setColumns(10);
+		surnameTextField = new JTextField();
+		surnameTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
+		surnameTextField.setBounds(174, 73, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(surnameTextField);
+		surnameTextField.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_3.setBounds(174, 101, 239, 26);
-		frmRegisterNewPatient.getContentPane().add(textField_3);
-		textField_3.setColumns(10);
+		dobTextField = new JTextField();
+		dobTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
+		dobTextField.setBounds(174, 101, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(dobTextField);
+		dobTextField.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_4.setBounds(174, 129, 239, 26);
-		frmRegisterNewPatient.getContentPane().add(textField_4);
-		textField_4.setColumns(10);
+		contactNumberTextField = new JTextField();
+		contactNumberTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
+		contactNumberTextField.setBounds(174, 129, 239, 26);
+		frmRegisterNewPatient.getContentPane().add(contactNumberTextField);
+		contactNumberTextField.setColumns(10);
 		
 		lblHouseNo = new JLabel("House Number");
 		lblHouseNo.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -177,11 +183,23 @@ public class RegisterPatient {
 		btnCancel.setBounds(6, 333, 117, 29);
 		frmRegisterNewPatient.getContentPane().add(btnCancel);
 		
+		
+		
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Menlo", Font.PLAIN, 13));
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmRegisterNewPatient.dispose();
+				
+				String title = titleTextField.getText();
+		        String forename = forenameTextField.getText();
+		        String surname = surnameTextField.getText();		   
+		        String dobString = dobTextField.getText();		
+		        String contactNo = contactNumberTextField.getText();  
+		            try {
+		                Patient patient = new Patient(title,forename,surname,dobString,contactNo);
+		            } catch (Exception ex) {
+		                System.out.println(ex.toString());
+		            }
 			}
 		});
 		btnSubmit.setBounds(327, 333, 117, 29);
