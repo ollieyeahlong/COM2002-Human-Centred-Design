@@ -12,13 +12,14 @@ public class Patient {
 	
 	 private int patientNumber;
 	 private String title, forename, surname, dateOfBirth, contactNumber;
+	 
 	 private Connection conn;
 	
-	public Patient(String title, String forename, String surname, String dob, String contactNumber) {
-        create(title, forename, surname, dob, contactNumber);
+	public Patient(String title, String forename, String surname, String dob, String contactNumber, Address address) {
+        create(title, forename, surname, dob, contactNumber, address);
     }
 
-	private boolean create(String title, String forename, String surname, String dob, String contactNumber){
+	private boolean create(String title, String forename, String surname, String dob, String contactNumber, Address address){
         this.title = title;
         this.forename = forename;
         this.surname = surname;
@@ -29,7 +30,8 @@ public class Patient {
         PreparedStatement stmt = null;
 
         try {
-            stmt = conn.prepareStatement("INSERT INTO Patient (title, forename, surname, dateOfBirth, contactNumber) VALUES ( ?, ?, ?, ?, ?)");
+            
+        	stmt = conn.prepareStatement("INSERT INTO Patient (title, forename, surname, dateOfBirth, contactNumber) VALUES (?, ?, ?, ?, ?)");
 
             stmt.setString(1, title);
             stmt.setString(2, forename);
@@ -39,18 +41,21 @@ public class Patient {
 
             stmt.executeUpdate();
             
-            // THIS IS WHERE SHIT HITS THE FAN OLLIE. IT TRIES TO AUTO POPULATE THE PATIENT NUMBER WITH THE DEFAULT KEY, WHICH HAS ALREADY BEEN USED
-            // IS IT REALLY THAT MUCH OF A PROBEL TO JUST HAVE GAPS IN OUR ID?
-            // SURELY AS LONG AS THE ID IS CONSISTENT THEN ITS FINE
+            ResultSet res = stmt.getGeneratedKeys();
+            if(res.next()) { 
+            	patientNumber = res.getInt(1);
+            }
             
+            stmt = conn.prepareStatement("INSERT INTO Address (houseNumber, streetName, districtName, cityName, postcode, patientNumber) VALUES (?, ?, ?, ?, ?, ?)");
 
-            ResultSet rs = stmt.getGeneratedKeys();
-            System.out.println(rs);
-            if(rs.next()) { 
-            	this.patientNumber = rs.getInt(6);
-            	}
-            
-            
+            stmt.setInt(1, address.getHouseNo());
+            stmt.setString(2, address.getStreet());
+            stmt.setString(3, address.getDistrict());
+            stmt.setString(4, address.getCity());
+            stmt.setString(5, address.getPostcode());
+            stmt.setInt(6, patientNumber);
+
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println(e.toString());
@@ -61,5 +66,6 @@ public class Patient {
 
         return true;
     }
+	
 
 }

@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import dentist.entities.Address;
 import dentist.entities.Patient;
 
 import javax.swing.JButton;
@@ -203,12 +204,20 @@ public class RegisterPatient {
 		        String forename = forenameTextField.getText();
 		        String surname = surnameTextField.getText();		   
 		        String dobString = dobTextField.getText();		
-		        String contactNo = contactNumberTextField.getText();  
-		            try {
-		                Patient patient = new Patient(title,forename,surname,dobString,contactNo);
-		            } catch (Exception ex) {
-		                System.out.println(ex.toString());
-		            }
+		        String contactNo = contactNumberTextField.getText(); 
+		        int houseNo = Integer.parseInt(textField_5.getText());
+		        String street = textField_6.getText();
+		        String district = textField_6.getText();
+		        String city = textField_6.getText();
+		        String postcode = textField_6.getText();
+		        
+		        try {
+	            	Address address = new Address(houseNo, street, city, district, postcode);
+	                Patient patient = new Patient(title, forename, surname, dobString, contactNo, address);
+	            } catch (Exception ex) {
+	                System.out.println(ex.toString());
+	            }
+		            
 			}
 		});
 		btnSubmit.setBounds(327, 333, 117, 29);
