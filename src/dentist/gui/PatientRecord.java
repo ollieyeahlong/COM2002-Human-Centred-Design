@@ -107,6 +107,8 @@ public class PatientRecord {
 			chckbxNewCheckBox.setFont(new Font("Menlo", Font.PLAIN, 14));
 			if (Treatment.fetchIfPrePaid(patientNumber)) {
 				chckbxNewCheckBox.setSelected(true);
+				
+				
 			} else {
 				chckbxNewCheckBox.setSelected(false);
 			}
@@ -114,6 +116,9 @@ public class PatientRecord {
 			PrePaid.add(chckbxNewCheckBox);
 		    
 		}
+		
+		JPanel panel = new JPanel();
+		frmPatientRecord.getContentPane().add(panel, BorderLayout.CENTER);
 		
 		
 		
@@ -123,7 +128,24 @@ public class PatientRecord {
 		
 		
 		JPanel titleThings = new JPanel();
+
+		JButton checkupUsed = new JButton();
+		titleThings.add(checkupUsed);
+		JLabel checkUpRemaining = new JLabel("X CHECK REMAIN");
+		titleThings.add(checkUpRemaining);
+		
+		JButton hygeineVistUser = new JButton();
+		titleThings.add(hygeineVistUser);
+		JLabel hygeineVistRemaining = new JLabel("X HYG REMAIN");
+		titleThings.add(hygeineVistRemaining);
+
+		JButton repairUsed = new JButton();
+		titleThings.add(repairUsed);
+		JLabel repairRemaining = new JLabel("X REPAIR REMAIN");
+		titleThings.add(repairRemaining);
 		frmPatientRecord.getContentPane().add(titleThings, BorderLayout.NORTH);
+		
+		
 		
 		JLabel lblPatientName = new JLabel("Patient Name: ");
 		lblPatientName.setFont(new Font("Menlo", Font.ITALIC, 14));

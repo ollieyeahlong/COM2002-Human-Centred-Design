@@ -12,6 +12,83 @@ public class HealthcarePlanE {
 	
 	private static Connection conn;
 	
+	public static String fetchCheckupCredits(String patientNumber) {
+		
+		String credits = null;
+		PreparedStatement stmt = null;
+		
+		conn = Database.getConnection();
+		try {
+			stmt = conn.prepareStatement("SELECT numberofCheckupLeft FROM HealthcarePlan WHERE (patientNumber = ?)");
+			stmt.setString(1, patientNumber);
+			ResultSet rs = stmt.executeQuery();
+			
+	    	while(rs.next())
+	    	{
+	    		credits = rs.getString(1);
+				return credits;
+	    	}
+		} catch(SQLException e) {
+            System.out.println(e.toString());
+        }  finally {
+            Database.closeStatement(conn, stmt);
+        }
+		credits = "0";
+		return credits;
+	}
+	
+	public static String fetchHygCredits(String patientNumber) {
+		
+		String credits = null;
+		PreparedStatement stmt = null;
+		
+		conn = Database.getConnection();
+		try {
+			stmt = conn.prepareStatement("SELECT numberOfHygieneVisitsLeft FROM HealthcarePlan WHERE (patientNumber = ?)");
+			stmt.setString(1, patientNumber);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+	    	while(rs.next())
+	    	{
+	    		credits = rs.getString(1);
+				return credits;
+	    	}
+		} catch(SQLException e) {
+            System.out.println(e.toString());
+        }  finally {
+            Database.closeStatement(conn, stmt);
+        }
+		credits = "0";
+		return credits;
+	}
+	
+	public static String fetchRepairCredits(String patientNumber) {
+		
+		String credits = null;
+		PreparedStatement stmt = null;
+		
+		conn = Database.getConnection();
+		try {
+			stmt = conn.prepareStatement("SELECT numberOfRepairsLeft FROM HealthcarePlan WHERE (patientNumber = ?)");
+			stmt.setString(1, patientNumber);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+	    	while(rs.next())
+	    	{
+	    		credits = rs.getString(1);
+				return credits;
+	    	}
+		} catch(SQLException e) {
+            System.out.println(e.toString());
+        }  finally {
+            Database.closeStatement(conn, stmt);
+        }
+		credits = "0";
+		return credits;
+	}
+	
 	
 	public static String getCurrentMedicalPlan(String patientNumber) {
 		
