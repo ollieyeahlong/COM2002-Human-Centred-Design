@@ -7,7 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+
+import dentist.entities.Patient;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
@@ -69,8 +73,9 @@ public class NewAppointment {
 		lblPatientName.setBounds(43, 54, 104, 16);
 		frmNewAppointment.getContentPane().add(lblPatientName);
 		
-		String[] patientNames = {"Mr Foka Eleuterio Spanò", "Mr Baldev Culhwch Giannino", "Mr Narciso Laurus Henson"};
-		JComboBox comboBox = new JComboBox(patientNames);
+		ArrayList<String> list = (Patient.getAllPatientNames());  
+		String [] names = list.toArray(new String[list.size()]);
+		JComboBox comboBox = new JComboBox(names);
 		comboBox.setFont(new Font("Menlo", Font.PLAIN, 13));
 		comboBox.setBounds(159, 50, 237, 27);
 		frmNewAppointment.getContentPane().add(comboBox);
