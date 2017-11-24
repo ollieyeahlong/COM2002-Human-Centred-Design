@@ -1,4 +1,4 @@
-package dentist;
+package dentist.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
@@ -15,7 +15,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
-public class Dentist extends JFrame {
+public class Hygienist extends JFrame {
 
 	private JFrame contentFrame;
 	private JTextField txtSearchForAppointment;
@@ -25,14 +25,14 @@ public class Dentist extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Dentist window = new Dentist();
+		Hygienist window = new Hygienist();
 		window.contentFrame.setVisible(true);
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public Dentist() {
+	public Hygienist() {
 		setLocationRelativeTo(null);
 		initialize();
 	}
@@ -40,7 +40,7 @@ public class Dentist extends JFrame {
 	// make the initialFrame
 	private void makeFrame() {
 		contentFrame = new JFrame();
-		contentFrame.setTitle("Dentist");
+		contentFrame.setTitle("Hygienist");
 		contentFrame.setBounds(100, 100, 763, 560);
 		contentFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		contentFrame.getContentPane().setLayout(null);

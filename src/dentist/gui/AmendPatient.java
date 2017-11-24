@@ -1,4 +1,4 @@
-package dentist;
+package dentist.gui;
 
 import java.awt.EventQueue;
 

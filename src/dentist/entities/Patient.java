@@ -1,4 +1,4 @@
-package dentist;
+package dentist.entities;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,11 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import dentist.database.Database;
+
 public class Patient {
 	
 	 private int patientNumber;
-	 private String title, forename, surname, contactNumber;
-	 private String dateOfBirth;
+	 private String title, forename, surname, dateOfBirth, contactNumber;
 	 private Connection conn;
 	
 	public Patient(String title, String forename, String surname, String dob, String contactNumber) {
@@ -23,14 +24,11 @@ public class Patient {
         this.surname = surname;
         this.dateOfBirth = dob;
         this.contactNumber = contactNumber;
+        
         conn = Database.getConnection();
         PreparedStatement stmt = null;
-        PreparedStatement findNextKeyStmt = null;
 
         try {
-        	
-
-
             stmt = conn.prepareStatement("INSERT INTO Patient (title, forename, surname, dateOfBirth, contactNumber) VALUES ( ?, ?, ?, ?, ?)");
 
             stmt.setString(1, title);

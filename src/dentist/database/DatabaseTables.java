@@ -1,4 +1,4 @@
-package dentist;
+package dentist.database;
 
 public class DatabaseTables {
 	

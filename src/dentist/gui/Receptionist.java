@@ -1,4 +1,4 @@
-package dentist;
+package dentist.gui;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

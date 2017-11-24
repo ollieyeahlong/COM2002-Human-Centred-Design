@@ -1,4 +1,4 @@
-package dentist;
+package dentist.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

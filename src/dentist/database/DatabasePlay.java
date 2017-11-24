@@ -1,4 +1,4 @@
-package dentist;
+package dentist.database;
 
 import java.awt.EventQueue;
 
@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,29 +21,28 @@ public class DatabasePlay {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DatabasePlay window = new DatabasePlay();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		Connection conn = Database.getConnection();
+        PreparedStatement stmt = null;
+        
+        try {
+        	DatabaseMetaData md = conn.getMetaData();
+        	ResultSet rs = md.getTables(null, null, "%", null);
+        	while (rs.next()) {
+        		System.out.println(rs.getString(3));
+        	}
+        } catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} finally {
+			 Database.closeStatement(conn, stmt);
+		}
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public DatabasePlay() {
-		initialize();
-	}
 
-	/**
+      /**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	/*private void initialize() {
 		
 		Connection conn = Database.getConnection();
         PreparedStatement stmt = null;
@@ -93,6 +93,6 @@ public class DatabasePlay {
 			}
 		});
 		frame.getContentPane().add(btnNewButton, BorderLayout.NORTH);
-	}
+	}*/
 
 }

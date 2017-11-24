@@ -1,4 +1,4 @@
-package dentist;
+package dentist.gui;
 
 import java.awt.EventQueue;
 
@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import dentist.entities.Patient;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Date;
@@ -17,16 +20,22 @@ import java.awt.Font;
 public class RegisterPatient {
 	
 	private JFrame frmRegisterNewPatient;
-	private JTextField titleTextField;
-	private JTextField forenameTextField;
-	private JTextField surnameTextField;
-	private JTextField dobTextField;
-	private JTextField contactNumberTextField;
+	
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblSurname;
+	private JLabel lblDob;
+	private JLabel lblNewLabel_2;
 	private JLabel lblHouseNo;
 	private JLabel lblNewLabel_3;
 	private JLabel lblNewLabel_4;
 	private JLabel lblCityName;
 	private JLabel lblPostcode;
+	private JTextField titleTextField;
+	private JTextField forenameTextField;
+	private JTextField surnameTextField;
+	private JTextField dobTextField;
+	private JTextField contactNumberTextField;
 	private JTextField textField_5;
 	private JTextField textField_6;
 	private JTextField textField_7;
@@ -63,27 +72,27 @@ public class RegisterPatient {
 		frmRegisterNewPatient.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegisterNewPatient.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Title");
+		lblNewLabel = new JLabel("Title");
 		lblNewLabel.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblNewLabel.setBounds(48, 22, 103, 16);
 		frmRegisterNewPatient.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Forename");
+		lblNewLabel_1 = new JLabel("Forename");
 		lblNewLabel_1.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblNewLabel_1.setBounds(48, 50, 103, 16);
 		frmRegisterNewPatient.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblSurname = new JLabel("Surname");
+		lblSurname = new JLabel("Surname");
 		lblSurname.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblSurname.setBounds(48, 78, 103, 16);
 		frmRegisterNewPatient.getContentPane().add(lblSurname);
 		
-		JLabel lblDob = new JLabel("D.O.B");
+		lblDob = new JLabel("D.O.B");
 		lblDob.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblDob.setBounds(48, 106, 103, 16);
 		frmRegisterNewPatient.getContentPane().add(lblDob);
 		
-		JLabel lblNewLabel_2 = new JLabel("Contact Number");
+		lblNewLabel_2 = new JLabel("Contact Number");
 		lblNewLabel_2.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblNewLabel_2.setBounds(48, 134, 130, 16);
 		frmRegisterNewPatient.getContentPane().add(lblNewLabel_2);
