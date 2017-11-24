@@ -222,13 +222,17 @@ public class RegisterPatient {
 		        	} else if (validationHouseNumber(textField_5.getText()) == false) {
 		        		JOptionPane.showMessageDialog((frmRegisterNewPatient.getContentPane()), "House Number length must be <= 5. Must not be empty. Must be an Integer.");
 		        		
-		        	} else if (otherValidation(forename, surname, street, city, postcode) == false) {
+		        	} else if (otherValidation(forename, surname, street, city) == false) {
 		        		JOptionPane.showMessageDialog((frmRegisterNewPatient.getContentPane()), "Check length and empty cells on: forename, surname, city, street, postcode.");
 		        		
 		        		
 		        	} else {
 		        		Address address = new Address(Integer.parseInt(textField_5.getText()), street, city, district, postcode);
+		        		
+						
 		                Patient patient = new Patient(title, forename, surname, dobString, contactNo, address);
+		                
+		                JOptionPane.showMessageDialog(frmRegisterNewPatient.getContentPane(), "Success. " + forename + " " + surname + " has been registered.");
 		        	}
 		        	
 	            	
@@ -252,14 +256,13 @@ public class RegisterPatient {
 		return houseTrue;
 	}
 	
-	private boolean otherValidation(String forename, String surname, String street, String city, String postcode) {
+	private boolean otherValidation(String forename, String surname, String street, String city) {
 		boolean forenameValid = !(forename.isEmpty()) && (forename.length() <= 50);
 		boolean surnameValid = !(surname.isEmpty()) && (surname.length() <= 50);
 		boolean cityValid = !(city.isEmpty()) && (city.length() <= 50);
 		boolean streetValid = !(street.isEmpty()) && (street.length() <= 50);
-		boolean postcodeValid = !(postcode.isEmpty()) && (postcode.length() <= 50);
 		
-		return forenameValid && surnameValid && cityValid && streetValid && postcodeValid;
+		return forenameValid && surnameValid && cityValid && streetValid;
 		
 	}
 	
