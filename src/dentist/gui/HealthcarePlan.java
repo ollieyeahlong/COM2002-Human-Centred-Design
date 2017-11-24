@@ -4,15 +4,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import dentist.entities.HealthcarePlanE;
+import dentist.entities.Patient;
+
 import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class HealthcarePlan {
 
 	private JFrame frmHealthcarePlan;
+	private JButton btnUnsubscribe;
 
 	/**
 	 * Launch the application.
@@ -57,20 +64,53 @@ public class HealthcarePlan {
 		lblNewPlan.setBounds(53, 89, 121, 16);
 		frmHealthcarePlan.getContentPane().add(lblNewPlan);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Menlo", Font.PLAIN, 13));
-		comboBox.setBounds(183, 35, 215, 27);
-		frmHealthcarePlan.getContentPane().add(comboBox);
 		
-		JLabel lblNewLabel = new JLabel("Choose A Patient");
-		lblNewLabel.setFont(new Font("Menlo", Font.PLAIN, 13));
-		lblNewLabel.setBounds(185, 63, 207, 16);
-		frmHealthcarePlan.getContentPane().add(lblNewLabel);
+		ArrayList<String> list = (Patient.getAllPatientNames());  
+		String [] names = list.toArray(new String[list.size()]);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setFont(new Font("Menlo", Font.PLAIN, 13));
-		comboBox_1.setBounds(183, 85, 215, 27);
-		frmHealthcarePlan.getContentPane().add(comboBox_1);
+		JComboBox patientNames = new JComboBox(names);
+		patientNames.setFont(new Font("Menlo", Font.PLAIN, 13));
+		patientNames.setBounds(183, 35, 215, 27);
+		
+		frmHealthcarePlan.getContentPane().add(patientNames);
+		
+		JLabel currentPlanLabel = new JLabel("Choose A Patient");
+		currentPlanLabel.setFont(new Font("Menlo", Font.PLAIN, 13));
+		currentPlanLabel.setBounds(185, 63, 207, 16);
+		frmHealthcarePlan.getContentPane().add(currentPlanLabel);
+		
+    	String valueOfName = patientNames.getSelectedItem().toString();
+    	
+    	String patientNumber = valueOfName.substring(valueOfName.length() - 1); 
+		
+		currentPlanLabel.setText(HealthcarePlanE.getCurrentMedicalPlan(patientNumber));
+		
+		patientNames.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		    	
+		    	String valueOfName = patientNames.getSelectedItem().toString();
+		    	
+		    	String patientNumber = valueOfName.substring(valueOfName.length() - 1); 
+				
+				currentPlanLabel.setText(HealthcarePlanE.getCurrentMedicalPlan(patientNumber));
+				if (HealthcarePlanE.patientOnPlan(patientNumber)) {
+		    		btnUnsubscribe.setVisible(true);
+		    	} else {
+		    		btnUnsubscribe.setVisible(false);
+		    	}
+		    	
+		    	
+		    	
+		    }
+		});
+		
+		ArrayList<String> planList = (HealthcarePlanE.getAllHealthcarePlans());  
+		String [] namesPlanList = planList.toArray(new String[planList.size()]);
+		
+		JComboBox newPlanList = new JComboBox(namesPlanList);
+		newPlanList.setFont(new Font("Menlo", Font.PLAIN, 13));
+		newPlanList.setBounds(183, 85, 215, 27);
+		frmHealthcarePlan.getContentPane().add(newPlanList);
 		
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -82,14 +122,45 @@ public class HealthcarePlan {
 		btnCancel.setBounds(6, 243, 117, 29);
 		frmHealthcarePlan.getContentPane().add(btnCancel);
 		
-		JButton button = new JButton(">");
-		button.setFont(new Font("Menlo", Font.PLAIN, 13));
-		button.addActionListener(new ActionListener() {
+		JButton btnSubscribe = new JButton("Subscribe");
+		btnSubscribe.setFont(new Font("Menlo", Font.PLAIN, 13));
+		btnSubscribe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				String newPlan = newPlanList.getSelectedItem().toString();
+				String name = patientNames.getSelectedItem().toString();
+				
+				String patientNumber = name.substring(name.length() - 1);
+				HealthcarePlanE.addToPlan(patientNumber, newPlan);
+				JOptionPane.showMessageDialog(frmHealthcarePlan.getContentPane(), "Success. " + name + " Added to " + newPlan + ".");
 				frmHealthcarePlan.dispose();
+				
+				
+				
+				
+				
 			}
 		});
-		button.setBounds(327, 243, 117, 29);
-		frmHealthcarePlan.getContentPane().add(button);
+		btnSubscribe.setBounds(327, 243, 117, 29);
+		frmHealthcarePlan.getContentPane().add(btnSubscribe);
+		
+		btnUnsubscribe = new JButton("Un Subscribe");
+		
+		btnUnsubscribe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String oldPlan = currentPlanLabel.getText();
+				String name = patientNames.getSelectedItem().toString();
+				
+				String patientNumber = name.substring(name.length() - 1);
+				HealthcarePlanE.removeFromPlan(patientNumber, oldPlan);
+				JOptionPane.showMessageDialog(frmHealthcarePlan.getContentPane(), "Success. " + name + " Un subscribed from " + oldPlan + ".");
+				frmHealthcarePlan.dispose();
+				
+			}
+		});
+		btnUnsubscribe.setBounds(198, 243, 117, 29);
+		frmHealthcarePlan.getContentPane().add(btnUnsubscribe);
+		btnUnsubscribe.setVisible(false);
 	}
 }

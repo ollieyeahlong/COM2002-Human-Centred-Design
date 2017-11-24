@@ -18,6 +18,10 @@ import javax.swing.JTable;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
+
+import dentist.entities.Address;
+import dentist.entities.Patient;
+
 import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
@@ -84,7 +88,22 @@ public class Receptionist extends JFrame {
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
+				
+				String surname = txtSearchForAppointment.getText();
+				
+				try {
+					ArrayList<Patient> patients = Patient.findPatients(surname);
+					for (Patient patient : patients) {
+	                        SearchForPatient view = new SearchForPatient();
+	                        
+	                    }
+	            } catch (Exception ex) {
+	                System.out.println(ex.toString());
+	            }
+				
+				
+				
+				
 			}
 		});
 		searchButton.setFont(new Font("Menlo", Font.PLAIN, 13));

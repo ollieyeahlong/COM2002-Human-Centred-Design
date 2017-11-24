@@ -4,17 +4,23 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import dentist.entities.Patient;
+
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
 public class AmendPatient {
 
 	private JFrame frmAmendPatientDetails;
-	private JTextField textField;
+	private JTextField newInfo;
+	private JComboBox patientList;
 
 	/**
 	 * Launch the application.
@@ -24,6 +30,7 @@ public class AmendPatient {
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public AmendPatient() {
 		initialize();
@@ -56,37 +63,62 @@ public class AmendPatient {
 		lblNewInformation.setBounds(55, 129, 158, 16);
 		frmAmendPatientDetails.getContentPane().add(lblNewInformation);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField.setBounds(207, 124, 181, 26);
-		frmAmendPatientDetails.getContentPane().add(textField);
-		textField.setColumns(10);
+		newInfo = new JTextField();
+		newInfo.setFont(new Font("Menlo", Font.PLAIN, 13));
+		newInfo.setBounds(207, 124, 181, 26);
+		frmAmendPatientDetails.getContentPane().add(newInfo);
+		newInfo.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblNewLabel.setBounds(210, 102, 172, 16);
 		frmAmendPatientDetails.getContentPane().add(lblNewLabel);
 		
 		JLabel lblDetailsToChange = new JLabel("Details to change");
+		lblNewLabel.setText(Patient.getOldInfo("Title", "1"));
 		lblDetailsToChange.setFont(new Font("Menlo", Font.PLAIN, 13));
 		lblDetailsToChange.setBounds(55, 74, 143, 16);
 		frmAmendPatientDetails.getContentPane().add(lblDetailsToChange);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setFont(new Font("Menlo", Font.PLAIN, 13));
-		lblNewLabel_1.setBounds(211, 50, 177, 16);
-		frmAmendPatientDetails.getContentPane().add(lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setFont(new Font("Menlo", Font.PLAIN, 13));
-		comboBox.setBounds(207, 70, 181, 27);
-		frmAmendPatientDetails.getContentPane().add(comboBox);
+		String[] optionsToAmend = {"Title", "Forename", "Surname", "D.O.B", "Contact Number"}; // options in dropdown
+		@SuppressWarnings("unchecked")
+		JComboBox detailsToChange = new JComboBox(optionsToAmend);
+		detailsToChange.setFont(new Font("Menlo", Font.PLAIN, 13));
+		detailsToChange.setBounds(207, 70, 181, 27);
+		detailsToChange.addActionListener (new ActionListener () {
+		    public void actionPerformed(ActionEvent e) {
+		        
+		    	String value = detailsToChange.getSelectedItem().toString();
+		    	String valueOfName = patientList.getSelectedItem().toString();
+		    	
+		    	String patientNumber = valueOfName.substring(valueOfName.length() - 1); 
+		    	
+		    	lblNewLabel.setText(Patient.getOldInfo(value, patientNumber));
+		    	
+		    	
+		    	
+		    }
+		});
+		
+		
+		frmAmendPatientDetails.getContentPane().add(detailsToChange);
 		
 		JButton button = new JButton(">");
 		button.setFont(new Font("Menlo", Font.PLAIN, 13));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frmAmendPatientDetails.dispose();
+				String newInfoString = newInfo.getText();	
+				String value = detailsToChange.getSelectedItem().toString();
+				String valueOfName = patientList.getSelectedItem().toString();
+				String patientNumber = valueOfName.substring(valueOfName.length() - 1);
+				if (!(newInfoString.isEmpty())) {
+					
+					Patient.setNewInformation(newInfoString, value, patientNumber);
+					JOptionPane.showMessageDialog(frmAmendPatientDetails.getContentPane(), "Success. " + value + " Changed to " + newInfoString + ".");
+					
+				}
+				
 			}
 		});
 		button.setBounds(333, 200, 117, 29);
@@ -101,6 +133,15 @@ public class AmendPatient {
 		});
 		btnCancel.setBounds(6, 200, 117, 29);
 		frmAmendPatientDetails.getContentPane().add(btnCancel);
+		
+		
+		ArrayList<String> list = (Patient.getAllPatientNames());  
+		String [] names = list.toArray(new String[list.size()]);
+		
+		
+		
+		patientList = new JComboBox<Object>(names);
+		patientList.setBounds(207, 46, 181, 27);
+		frmAmendPatientDetails.getContentPane().add(patientList);
 	}
-
 }

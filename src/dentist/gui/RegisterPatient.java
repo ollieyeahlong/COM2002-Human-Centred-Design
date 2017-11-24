@@ -88,9 +88,9 @@ public class RegisterPatient {
 		lblSurname.setBounds(48, 78, 103, 16);
 		frmRegisterNewPatient.getContentPane().add(lblSurname);
 		
-		lblDob = new JLabel("D.O.B");
+		lblDob = new JLabel("D.O.B (YYYY-MM-DD)");
 		lblDob.setFont(new Font("Menlo", Font.PLAIN, 13));
-		lblDob.setBounds(48, 106, 103, 16);
+		lblDob.setBounds(48, 106, 182, 16);
 		frmRegisterNewPatient.getContentPane().add(lblDob);
 		
 		lblNewLabel_2 = new JLabel("Contact Number");
@@ -100,31 +100,31 @@ public class RegisterPatient {
 		
 		titleTextField = new JTextField();
 		titleTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		titleTextField.setBounds(174, 17, 239, 26);
+		titleTextField.setBounds(194, 17, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(titleTextField);
 		titleTextField.setColumns(10);
 		
 		forenameTextField = new JTextField();
 		forenameTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		forenameTextField.setBounds(173, 45, 239, 26);
+		forenameTextField.setBounds(193, 45, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(forenameTextField);
 		forenameTextField.setColumns(10);
 		
 		surnameTextField = new JTextField();
 		surnameTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		surnameTextField.setBounds(174, 73, 239, 26);
+		surnameTextField.setBounds(194, 73, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(surnameTextField);
 		surnameTextField.setColumns(10);
 		
 		dobTextField = new JTextField();
 		dobTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		dobTextField.setBounds(174, 101, 239, 26);
+		dobTextField.setBounds(194, 101, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(dobTextField);
 		dobTextField.setColumns(10);
 		
 		contactNumberTextField = new JTextField();
 		contactNumberTextField.setFont(new Font("Menlo", Font.PLAIN, 13));
-		contactNumberTextField.setBounds(174, 129, 239, 26);
+		contactNumberTextField.setBounds(194, 129, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(contactNumberTextField);
 		contactNumberTextField.setColumns(10);
 		
@@ -155,31 +155,31 @@ public class RegisterPatient {
 		
 		textField_5 = new JTextField();
 		textField_5.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_5.setBounds(174, 157, 239, 26);
+		textField_5.setBounds(194, 157, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
 		
 		textField_6 = new JTextField();
 		textField_6.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_6.setBounds(174, 185, 239, 26);
+		textField_6.setBounds(194, 185, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 		
 		textField_7 = new JTextField();
 		textField_7.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_7.setBounds(174, 213, 239, 26);
+		textField_7.setBounds(194, 213, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(textField_7);
 		textField_7.setColumns(10);
 		
 		textField_8 = new JTextField();
 		textField_8.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_8.setBounds(174, 241, 239, 26);
+		textField_8.setBounds(194, 241, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(textField_8);
 		textField_8.setColumns(10);
 		
 		textField_9 = new JTextField();
 		textField_9.setFont(new Font("Menlo", Font.PLAIN, 13));
-		textField_9.setBounds(174, 269, 239, 26);
+		textField_9.setBounds(194, 269, 239, 26);
 		frmRegisterNewPatient.getContentPane().add(textField_9);
 		textField_9.setColumns(10);
 		
@@ -197,6 +197,9 @@ public class RegisterPatient {
 		
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Menlo", Font.PLAIN, 13));
+		
+		
+		
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -205,15 +208,30 @@ public class RegisterPatient {
 		        String surname = surnameTextField.getText();		   
 		        String dobString = dobTextField.getText();		
 		        String contactNo = contactNumberTextField.getText(); 
-		        int houseNo = Integer.parseInt(textField_5.getText());
+		        int houseNo;
 		        String street = textField_6.getText();
 		        String district = textField_6.getText();
 		        String city = textField_6.getText();
 		        String postcode = textField_6.getText();
 		        
 		        try {
-	            	Address address = new Address(houseNo, street, city, district, postcode);
-	                Patient patient = new Patient(title, forename, surname, dobString, contactNo, address);
+		        	
+		        	if (validationDOB(dobString) == false) {
+		        		JOptionPane.showMessageDialog((frmRegisterNewPatient.getContentPane()), "D.O.B must be in format YYYY-MM-DD.");
+		        		
+		        	} else if (validationHouseNumber(textField_5.getText()) == false) {
+		        		JOptionPane.showMessageDialog((frmRegisterNewPatient.getContentPane()), "House Number length must be <= 5. Must not be empty. Must be an Integer.");
+		        		
+		        	} else if (otherValidation(forename, surname, street, city, postcode) == false) {
+		        		JOptionPane.showMessageDialog((frmRegisterNewPatient.getContentPane()), "Check length and empty cells on: forename, surname, city, street, postcode.");
+		        		
+		        		
+		        	} else {
+		        		Address address = new Address(Integer.parseInt(textField_5.getText()), street, city, district, postcode);
+		                Patient patient = new Patient(title, forename, surname, dobString, contactNo, address);
+		        	}
+		        	
+	            	
 	            } catch (Exception ex) {
 	                System.out.println(ex.toString());
 	            }
@@ -223,5 +241,37 @@ public class RegisterPatient {
 		btnSubmit.setBounds(327, 333, 117, 29);
 		frmRegisterNewPatient.getContentPane().add(btnSubmit);
 	}
+	
+	private boolean validationDOB(String dobString) {
+		boolean dobTrue = !dobString.isEmpty() && dobString.matches("\\d{4}-\\d{2}-\\d{2}$");
+		return dobTrue;
+	}
+	
+	private boolean validationHouseNumber(String houseNum) {
+		boolean houseTrue = !(houseNum.isEmpty()) && (houseNum.length() <= 5) && (isInteger());
+		return houseTrue;
+	}
+	
+	private boolean otherValidation(String forename, String surname, String street, String city, String postcode) {
+		boolean forenameValid = !(forename.isEmpty()) && (forename.length() <= 50);
+		boolean surnameValid = !(surname.isEmpty()) && (surname.length() <= 50);
+		boolean cityValid = !(city.isEmpty()) && (city.length() <= 50);
+		boolean streetValid = !(street.isEmpty()) && (street.length() <= 50);
+		boolean postcodeValid = !(postcode.isEmpty()) && (postcode.length() <= 50);
+		
+		return forenameValid && surnameValid && cityValid && streetValid && postcodeValid;
+		
+	}
+	
+	private boolean isInteger() {
+		try {
+		    int string = Integer.parseInt(textField_5.getText());
+		    return true;
+		} catch (NumberFormatException e) {
+		    return false;
+		}
+	}
+	
+	
 
 }
