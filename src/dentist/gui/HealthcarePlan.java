@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class HealthcarePlan {
 
@@ -161,6 +162,12 @@ public class HealthcarePlan {
 		});
 		btnUnsubscribe.setBounds(198, 243, 117, 29);
 		frmHealthcarePlan.getContentPane().add(btnUnsubscribe);
+		
+		JLabel lblIfNothingIn = new JLabel("If nothing in current plan then the patient is not on a plan");
+		lblIfNothingIn.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIfNothingIn.setFont(new Font("Menlo", Font.PLAIN, 8));
+		lblIfNothingIn.setBounds(6, 161, 438, 16);
+		frmHealthcarePlan.getContentPane().add(lblIfNothingIn);
 		btnUnsubscribe.setVisible(false);
 	}
 }

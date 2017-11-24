@@ -31,6 +31,66 @@ public class Patient {
         create(title, forename, surname, dob, contactNumber, address);
     }
 	
+	
+	public static String fetchForename(String patientNumber) {
+		String information = null;
+		PreparedStatement stmt = null;
+		
+		conn = Database.getConnection();
+		try {
+			stmt = conn.prepareStatement("SELECT forename FROM Patient WHERE (patientNumber = ?)");
+			stmt.setString(1, patientNumber);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+	    	while(rs.next())
+	    	{
+	    		information = rs.getString(1);
+				return information;
+	    	}
+			
+			
+		} catch(SQLException e) {
+            System.out.println(e.toString());
+        }  finally {
+            Database.closeStatement(conn, stmt);
+        }
+		return forename;
+	}
+	
+	public static String fetchSurname(String patientNumber) {
+		String information = null;
+		PreparedStatement stmt = null;
+		
+		conn = Database.getConnection();
+		try {
+			stmt = conn.prepareStatement("SELECT surname FROM Patient WHERE (patientNumber = ?)");
+			stmt.setString(1, patientNumber);
+			
+			ResultSet rs = stmt.executeQuery();
+			
+	    	while(rs.next())
+	    	{
+	    		information = rs.getString(1);
+				return information;
+	    	}
+			
+			
+		} catch(SQLException e) {
+            System.out.println(e.toString());
+        }  finally {
+            Database.closeStatement(conn, stmt);
+        }
+		return forename;
+	}
+	
+	
+	
+	
+
+	
+	
+	
 	public static String getOldInfo(String colSelection, String patientNumber) {
 		String information = null;
 		PreparedStatement stmt = null;
@@ -125,6 +185,35 @@ public class Patient {
 		
 	}
 	
+	public static ArrayList<String> searchingForPatients(String searchString)    {
+		Connection conn = Database.getConnection();
+		PreparedStatement stmt = null;
+		
+		ArrayList<String> surnameList = new ArrayList<String>();
+	    try{
+	    	
+	    	stmt = conn.prepareStatement("select surname, patientNumber from Patient where surname like '%" + searchString + "%'");
+	    	
+	    	ResultSet rs = stmt.executeQuery();
+	    	while(rs.next())
+	    	{
+	    		String surname = rs.getString(1);
+	    		String patientNumber = rs.getString(2);
+	    		surnameList.add(surname + " PN:" + patientNumber); //here you can get data, the '1' indicates column number based on your query
+	    	}
+
+	          }
+	          catch(Exception e)
+	          {
+	              System.out.println("Error in getData"+e);
+	          }  finally {
+	              Database.closeStatement(conn, stmt);
+	          }
+	  		
+
+	    return(surnameList);
+	 }
+	
 	
 	
 	 private boolean patientBySurname(String sn) {
@@ -214,15 +303,4 @@ public class Patient {
 
         return true;
     }
-
-	public static ArrayList<Patient> findPatients(String surname2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-	
-	
-
 }

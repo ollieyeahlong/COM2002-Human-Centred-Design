@@ -23,6 +23,8 @@ import dentist.entities.Address;
 import dentist.entities.Patient;
 
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class Receptionist extends JFrame {
@@ -88,22 +90,7 @@ public class Receptionist extends JFrame {
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				String surname = txtSearchForAppointment.getText();
-				
-				try {
-					ArrayList<Patient> patients = Patient.findPatients(surname);
-					for (Patient patient : patients) {
-	                        SearchForPatient view = new SearchForPatient();
-	                        
-	                    }
-	            } catch (Exception ex) {
-	                System.out.println(ex.toString());
-	            }
-				
-				
-				
-				
+			
 			}
 		});
 		searchButton.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -185,14 +172,26 @@ public class Receptionist extends JFrame {
 		
 		
 		
-		JButton searchButton = new JButton("Search");
-		searchButton.addActionListener(new ActionListener() {
+		JButton searchButtonPatients = new JButton("Search");
+		searchButtonPatients.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		}});
+				
+				
+				System.out.println("pushed");
+				String searchTerm = txtSearchForPatient.getText();
+				ArrayList<String> Results = Patient.searchingForPatients(searchTerm);
+				Integer count = Results.size();
+				SearchResults sr = new SearchResults(Results, searchTerm, count);
+				
+
+			}
+				
+				
+		});
 		
-		searchButton.setFont(new Font("Menlo", Font.PLAIN, 13));
-		searchButton.setBounds(600, 19, 117, 29);
-		patientsView.add(searchButton);
+		searchButtonPatients.setFont(new Font("Menlo", Font.PLAIN, 13));
+		searchButtonPatients.setBounds(600, 19, 117, 29);
+		patientsView.add(searchButtonPatients);
 		//__________________________________________________________________________
 		
 		JButton registerButton = new JButton("Register Patient");
@@ -217,11 +216,6 @@ public class Receptionist extends JFrame {
 		patientsView.add(amendButton);
 		//__________________________________________________________________________
 		
-		table = new JTable();
-		table.setBounds(173, 55, 551, 423);
-		patientsView.add(table);
-		//__________________________________________________________________________
-		
 		JButton logoutButton = new JButton("Logout");
 		logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -229,6 +223,22 @@ public class Receptionist extends JFrame {
             	contentFrame.dispose();
             }
         });
+		
+		JPanel allPatients = new JPanel();
+		ArrayList<String> list = (Patient.getAllPatientNames());  
+		String [] names = list.toArray(new String[list.size()]);
+		for (int i=0; i<names.length; i++) {
+			JLabel lblPatientName = new JLabel();
+			lblPatientName.setFont(new Font("Menlo", Font.PLAIN, 13));
+			lblPatientName.setText(names[i]);
+			allPatients.add(lblPatientName);
+		}
+		
+		
+		
+		allPatients.setBounds(339, 57, 187, 425);
+		patientsView.add(allPatients);
+		allPatients.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		logoutButton.setFont(new Font("Menlo", Font.PLAIN, 13));
 		logoutButton.setBounds(6, 400, 155, 29);
 		patientsView.add(logoutButton);
