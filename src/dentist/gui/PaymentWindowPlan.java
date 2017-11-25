@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class PatientRecordPayment {
+public class PaymentWindowPlan {
 
 	private JFrame frame;
 
@@ -12,22 +12,14 @@ public class PatientRecordPayment {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PatientRecordPayment window = new PatientRecordPayment();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public PatientRecordPayment() {
+	public PaymentWindowPlan() {
+
 		initialize();
 	}
 
@@ -38,6 +30,7 @@ public class PatientRecordPayment {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 
 }

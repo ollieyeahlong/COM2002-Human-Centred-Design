@@ -63,6 +63,10 @@ public class Treatment {
 		return information;
 	}
 	
+//select treatmentGiven from PatientRecord WHERE patientNumber = '2'
+	
+
+	
 	public static boolean fetchIfPrePaid(String patientNumber) {
 		String information = null;
 		PreparedStatement stmt = null;

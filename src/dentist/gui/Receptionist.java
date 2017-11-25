@@ -37,7 +37,7 @@ public class Receptionist extends JFrame {
 	private JPanel appointmentsView; 	
 	private JPanel patientsView;
 	
-	private Calendar calendar;
+	private CalendarTwo calendar;
 
 	/**
 	 * Launch the application.
@@ -122,7 +122,7 @@ public class Receptionist extends JFrame {
 		appointmentsView.add(cancelButton);
 		//__________________________________________________________________________
 		
-		calendar = new Calendar();
+		calendar = new CalendarTwo();
 		appointmentsView.add(calendar.receptionistView());
 		//__________________________________________________________________________
 		
@@ -177,7 +177,6 @@ public class Receptionist extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				
-				System.out.println("pushed");
 				String searchTerm = txtSearchForPatient.getText();
 				ArrayList<String> Results = Patient.searchingForPatients(searchTerm);
 				Integer count = Results.size();

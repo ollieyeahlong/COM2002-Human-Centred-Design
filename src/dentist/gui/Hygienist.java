@@ -21,7 +21,7 @@ public class Hygienist extends JFrame {
 	private JTextField txtSearchForAppointment;
 	private JTable table;
 	
-	private Calendar calendar;
+	private HygienistCalander calendar;
 
 	/**
 	 * Launch the application.
@@ -74,7 +74,8 @@ public class Hygienist extends JFrame {
 		JButton finishedButton = new JButton("Finished Appointment");
 		finishedButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
+				
+				RecordTreatment r = new RecordTreatment();
 			}
 		});
 		finishedButton.setFont(new Font("Menlo", Font.PLAIN, 13));
@@ -82,7 +83,7 @@ public class Hygienist extends JFrame {
 		contentFrame.getContentPane().add(finishedButton);
 		//__________________________________________________________________________
 		
-		calendar = new Calendar();
+		calendar = new HygienistCalander();
 		contentFrame.getContentPane().add(calendar.hygienistView());
 		//__________________________________________________________________________
 		

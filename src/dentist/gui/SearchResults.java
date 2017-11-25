@@ -57,7 +57,7 @@ public class SearchResults {
 		    buttonList.add(button);
 		    button.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					PatientRecord pR = new PatientRecord(patientNumber);
+					Record pR = new Record(patientNumber);
 					System.out.println("Open file for pn: " + patientNumber);
 				}
 			});
