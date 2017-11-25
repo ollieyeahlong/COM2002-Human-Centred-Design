@@ -135,7 +135,7 @@ public class Login extends JFrame {
 	
 	private void setupQuitButton() {
 		btnQuit = new JButton("Quit");
-		btnQuit.setBounds(6, 536, 75, 29);
+		btnQuit.setBounds(6, 510, 75, 29);
 		btnQuit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fSystemLoginRevised.dispose();

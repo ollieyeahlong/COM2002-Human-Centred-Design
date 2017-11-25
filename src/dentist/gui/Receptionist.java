@@ -121,9 +121,11 @@ public class Receptionist extends JFrame {
 		appointmentsView.add(cancelButton);
 		//__________________________________________________________________________
 		
-		table = new JTable();
-		table.setBounds(173, 55, 551, 423);
-		appointmentsView.add(table);
+		Calendar calendar = new Calendar();
+		appointmentsView.add(calendar.receptionistView());
+		
+
+
 		//__________________________________________________________________________
 		
 		JButton logoutButton = new JButton("Logout");
@@ -223,6 +225,10 @@ public class Receptionist extends JFrame {
             	contentFrame.dispose();
             }
         });
+		logoutButton.setFont(new Font("Menlo", Font.PLAIN, 13));
+		logoutButton.setBounds(6, 400, 155, 29);
+		patientsView.add(logoutButton);
+		//__________________________________________________________________________
 		
 		JPanel allPatients = new JPanel();
 		ArrayList<String> list = (Patient.getAllPatientNames());  
@@ -232,17 +238,13 @@ public class Receptionist extends JFrame {
 			lblPatientName.setFont(new Font("Menlo", Font.PLAIN, 13));
 			lblPatientName.setText(names[i]);
 			allPatients.add(lblPatientName);
-		}
-		
-		
+		}		
 		
 		allPatients.setBounds(339, 57, 187, 425);
-		patientsView.add(allPatients);
 		allPatients.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		logoutButton.setFont(new Font("Menlo", Font.PLAIN, 13));
-		logoutButton.setBounds(6, 400, 155, 29);
-		patientsView.add(logoutButton);
+		patientsView.add(allPatients);
 		//__________________________________________________________________________
+		
 	}
 	
 	/**

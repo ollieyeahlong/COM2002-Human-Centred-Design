@@ -26,22 +26,21 @@ import javax.swing.JSplitPane;
 
 public class Calendar {
 
-	private JFrame frame;
+	private JPanel calendar;
+	private JButton prevWeek;
+	private JButton nextWeek;
+	private JLabel currentWeek;
+	private JPanel mondayApps;
+	private JPanel tuesdayApps;
+	private JPanel wednesdayApps;
+	private JPanel thursdayApps;
+	private JPanel fridayApps;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Calendar window = new Calendar();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		
 	}
 
 	/**
@@ -55,28 +54,29 @@ public class Calendar {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		calendar = new JPanel();
+		calendar.setBounds(173, 55, 551, 423);
+		calendar.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBackground(Color.LIGHT_GRAY);
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		calendar.add(panel, BorderLayout.NORTH);
 		panel.setLayout(new BorderLayout(0, 0));
 		
-		JButton btnNewButton = new JButton("<-");
-		panel.add(btnNewButton, BorderLayout.WEST);
+		prevWeek = new JButton("<");
+		panel.add(prevWeek, BorderLayout.WEST);
 		
-		JButton btnNewButton_1 = new JButton("->");
-		panel.add(btnNewButton_1, BorderLayout.EAST);
+		nextWeek = new JButton(">");
+		panel.add(nextWeek, BorderLayout.EAST);
 		
-		JLabel lblNewLabel = new JLabel("Week");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(lblNewLabel, BorderLayout.CENTER);
+		currentWeek = new JLabel("Week");
+		currentWeek.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(currentWeek, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		calendar.add(panel_1, BorderLayout.CENTER);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
 		gbl_panel_1.rowHeights = new int[]{0, 0, 0};
@@ -119,44 +119,66 @@ public class Calendar {
 		gbc_lblFriday.gridy = 0;
 		panel_1.add(lblFriday, gbc_lblFriday);
 		
-		JPanel panel_2 = new JPanel();
+		mondayApps = new JPanel();
+		mondayApps.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 0;
 		gbc_panel_2.gridy = 1;
-		panel_1.add(panel_2, gbc_panel_2);
+		panel_1.add(mondayApps, gbc_panel_2);
 		
-		JPanel panel_3 = new JPanel();
+		tuesdayApps = new JPanel();
+		tuesdayApps.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_3.fill = GridBagConstraints.BOTH;
 		gbc_panel_3.gridx = 1;
 		gbc_panel_3.gridy = 1;
-		panel_1.add(panel_3, gbc_panel_3);
+		panel_1.add(tuesdayApps, gbc_panel_3);
 		
-		JPanel panel_4 = new JPanel();
+		wednesdayApps = new JPanel();
+		wednesdayApps.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_4.fill = GridBagConstraints.BOTH;
 		gbc_panel_4.gridx = 2;
 		gbc_panel_4.gridy = 1;
-		panel_1.add(panel_4, gbc_panel_4);
+		panel_1.add(wednesdayApps, gbc_panel_4);
 		
-		JPanel panel_5 = new JPanel();
+		thursdayApps = new JPanel();
+		thursdayApps.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
 		gbc_panel_5.gridx = 3;
 		gbc_panel_5.gridy = 1;
-		panel_1.add(panel_5, gbc_panel_5);
+		panel_1.add(thursdayApps, gbc_panel_5);
 		
-		JPanel panel_6 = new JPanel();
+		fridayApps = new JPanel();
+		fridayApps.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
 		gbc_panel_6.fill = GridBagConstraints.BOTH;
 		gbc_panel_6.gridx = 4;
 		gbc_panel_6.gridy = 1;
-		panel_1.add(panel_6, gbc_panel_6);
+		panel_1.add(fridayApps, gbc_panel_6);
+	}
+	
+	public JPanel receptionistView() {
+		
+		
+		return calendar;
+	}
+	
+	public JPanel dentistView() {
+		
+		
+		return calendar;
 	}
 
+	public JPanel hygienistView() {
+		
+		
+		return calendar;
+	}
 }

@@ -80,9 +80,8 @@ public class Dentist extends JFrame {
 		contentFrame.getContentPane().add(finishedButton);
 		//__________________________________________________________________________
 		
-		table = new JTable();
-		table.setBounds(173, 55, 551, 423);
-		contentFrame.getContentPane().add(table);
+		Calendar calendar = new Calendar();
+		contentFrame.getContentPane().add(calendar.dentistView());
 		//__________________________________________________________________________
 		
 		JButton logoutButton = new JButton("Logout");
