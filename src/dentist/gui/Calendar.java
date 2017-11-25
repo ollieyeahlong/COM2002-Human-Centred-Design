@@ -23,6 +23,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.BoxLayout;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import dentist.entities.Appointment;
+import dentist.entities.Patient;
+
 import java.awt.Component;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -40,6 +44,8 @@ public class Calendar {
 	private JPanel wednesdayApps;
 	private JPanel thursdayApps;
 	private JPanel fridayApps;
+	
+	private ArrayList<String> Appointments;
 
 	/**
 	 * Launch the application.
@@ -80,12 +86,13 @@ public class Calendar {
 		prevWeek = new JButton("<");
 		prevWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Update Date
 				realCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 				realCalendar.add(Calendar.DATE, -7);
 
-				//Display new week label here
+				//Display new date label here
 				
-				//
+				refreshAppointments();
 			}
 		});
 		panel.add(prevWeek, BorderLayout.WEST);
@@ -93,12 +100,13 @@ public class Calendar {
 		nextWeek = new JButton(">");
 		nextWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Update Date
 				realCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 				realCalendar.add(Calendar.DATE, +7);
 
-				//Display new week label here
+				//Display new date label here
 				
-				
+				refreshAppointments();
 			}
 		});
 		panel.add(nextWeek, BorderLayout.EAST);
@@ -197,29 +205,36 @@ public class Calendar {
 		panel_1.add(fridayApps, gbc_panel_6);
 	}
 	
-	public void refreshTop() {
-		
+	public void refreshAppointments() {
+		//Add apps to JPanels here based on new date
 	}
 	
 	//Code to display all appointments
-	public JPanel receptionistView() {
-		//Adds apps to the Jpanels here
+	public JPanel receptionistView() {		
 		
+		Appointments = Appointment.getAllAppointments();
 		
+		//Adds apps to the Jpanels here based on date
 		
 		return calendar;
 	}
 	
 	//Code to display only dentist appointments
-	public JPanel dentistView() {
-		//Adds apps to the Jpanels here
+	public JPanel dentistView() {		
+		
+		Appointments = Appointment.getDentistAppointments();
+		
+		//Adds apps to the Jpanels here based on date
 		
 		return calendar;
 	}
 
 	//Code to display only hygienist appointments
 	public JPanel hygienistView() {
-		//Adds apps to the Jpanels here
+		
+		Appointments = Appointment.getHygienistAppointments();
+		
+		//Adds apps to the Jpanels here based on date
 		
 		return calendar;
 	}
