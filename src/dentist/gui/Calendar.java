@@ -9,6 +9,11 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+//import java.sql.Date;
+//import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -22,14 +27,14 @@ import java.awt.Component;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JSplitPane;
 
 public class Calendar {
 
+	
 	private JPanel calendar;
 	private JButton prevWeek;
 	private JButton nextWeek;
-	private JLabel currentWeek;
+	private JLabel currentDate;
 	private JPanel mondayApps;
 	private JPanel tuesdayApps;
 	private JPanel wednesdayApps;
@@ -53,7 +58,15 @@ public class Calendar {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize() {		
+        
+		GregorianCalendar realCalendar = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
+        Date now = new Date();
+        realCalendar.setTime(now);
+        DateFormat dateAct = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        Date today = realCalendar.getTime();
+        String dateActual = dateAct.format(realCalendar.getTime());
+		
 		calendar = new JPanel();
 		calendar.setBounds(173, 55, 551, 423);
 		calendar.setLayout(new BorderLayout(0, 0));
@@ -65,14 +78,34 @@ public class Calendar {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		prevWeek = new JButton("<");
+		prevWeek.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				realCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+				realCalendar.add(Calendar.DATE, -7);
+
+				//Display new week label here
+				
+				//
+			}
+		});
 		panel.add(prevWeek, BorderLayout.WEST);
 		
 		nextWeek = new JButton(">");
+		nextWeek.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				realCalendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+				realCalendar.add(Calendar.DATE, +7);
+
+				//Display new week label here
+				
+				
+			}
+		});
 		panel.add(nextWeek, BorderLayout.EAST);
 		
-		currentWeek = new JLabel("Week");
-		currentWeek.setHorizontalAlignment(SwingConstants.CENTER);
-		panel.add(currentWeek, BorderLayout.CENTER);
+		currentDate = new JLabel("Week");
+		currentDate.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(currentDate, BorderLayout.CENTER);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -164,20 +197,29 @@ public class Calendar {
 		panel_1.add(fridayApps, gbc_panel_6);
 	}
 	
+	public void refreshTop() {
+		
+	}
+	
+	//Code to display all appointments
 	public JPanel receptionistView() {
+		//Adds apps to the Jpanels here
+		
 		
 		
 		return calendar;
 	}
 	
+	//Code to display only dentist appointments
 	public JPanel dentistView() {
-		
+		//Adds apps to the Jpanels here
 		
 		return calendar;
 	}
 
+	//Code to display only hygienist appointments
 	public JPanel hygienistView() {
-		
+		//Adds apps to the Jpanels here
 		
 		return calendar;
 	}

@@ -37,6 +37,7 @@ public class Receptionist extends JFrame {
 	private JPanel appointmentsView; 	
 	private JPanel patientsView;
 	
+	private Calendar calendar;
 
 	/**
 	 * Launch the application.
@@ -121,11 +122,8 @@ public class Receptionist extends JFrame {
 		appointmentsView.add(cancelButton);
 		//__________________________________________________________________________
 		
-		Calendar calendar = new Calendar();
+		calendar = new Calendar();
 		appointmentsView.add(calendar.receptionistView());
-		
-
-
 		//__________________________________________________________________________
 		
 		JButton logoutButton = new JButton("Logout");

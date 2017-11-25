@@ -20,6 +20,8 @@ public class Dentist extends JFrame {
 	private JFrame contentFrame;
 	private JTextField txtSearchForAppointment;
 	private JTable table;
+	
+	private Calendar calendar;
 
 	/**
 	 * Launch the application.
@@ -80,7 +82,7 @@ public class Dentist extends JFrame {
 		contentFrame.getContentPane().add(finishedButton);
 		//__________________________________________________________________________
 		
-		Calendar calendar = new Calendar();
+		calendar = new Calendar();
 		contentFrame.getContentPane().add(calendar.dentistView());
 		//__________________________________________________________________________
 		
