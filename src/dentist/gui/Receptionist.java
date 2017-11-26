@@ -239,7 +239,6 @@ public class Receptionist extends JFrame {
 			lblPatientName.setText(names[i]);
 			allPatients.add(lblPatientName);
 		}		
-		
 		allPatients.setBounds(339, 57, 187, 425);
 		allPatients.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		patientsView.add(allPatients);

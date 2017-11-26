@@ -194,6 +194,7 @@ public class HygienistCalander {
 		
 		
 		tuesdayApps = new JPanel();
+		
 		tuesdayApps.setBorder(new LineBorder(new Color(0, 0, 0)));
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.insets = new Insets(0, 0, 0, 5);
@@ -303,7 +304,7 @@ public class HygienistCalander {
 				btnNewButton_1.setFont(new Font("Menlo", Font.PLAIN, 9));
 				if(whoWith.equals("hygienist") && (patientNumberString.equals("13"))) {
 					btnNewButton_1.setText("HOLIDAY H");
-					btnNewButton_2.setText("HOLIDAY H END");
+					//btnNewButton_2.setText("HOLIDAY H END");
 				}
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -350,7 +351,7 @@ public class HygienistCalander {
 				}
 				
 				
-				ArrayList<String> list = (Appointment.getHolidayDates("dentist"));  
+				ArrayList<String> list = (Appointment.getHolidayDates("hygienist"));  
 				String [] dateDentist = list.toArray(new String[list.size()]);				
 				for (int i1=0; i1<dateDentist.length; i1++) {
 					//System.out.println(dateDentist[i1]);
@@ -448,15 +449,16 @@ public class HygienistCalander {
 				
 				
 				
-				if ((dayOfWeek).equals("Monday")) {					
+				if ((dayOfWeek).equals("Monday") && !(whoWith.equals("dentist"))) {
+					
 					mondayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Tuesday")) {
+				} else if ((dayOfWeek).equals("Tuesday")&& !(whoWith.equals("dentist"))) {
 					tuesdayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Wednesday")) {
+				} else if ((dayOfWeek).equals("Wednesday")&& !(whoWith.equals("dentist"))) {
 					wednesdayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Thursday")) {
+				} else if ((dayOfWeek).equals("Thursday")&& !(whoWith.equals("dentist"))) {
 					thursdayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Friday")) {
+				} else if ((dayOfWeek).equals("Friday")&& !(whoWith.equals("dentist"))) {
 					fridayApps.add(btnNewButton_1);
 				}
 			}

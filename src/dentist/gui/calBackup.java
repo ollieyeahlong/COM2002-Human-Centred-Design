@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -49,6 +50,9 @@ public class CalendarTwo {
 	private JButton btnNewButton;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_1;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
 
 	/**
 	 * Launch the application.
@@ -300,14 +304,26 @@ public class CalendarTwo {
 				
 				btnNewButton_1 = new JButton("@" + timeSub);
 				btnNewButton_2 = new JButton("@" + timeSub);
+				btnNewButton_3 = new JButton("@" + timeSub);
+				btnNewButton_4 = new JButton("@" + timeSub);
+				btnNewButton_5 = new JButton("@" + timeSub);
+
+				
 				btnNewButton_1.setFont(new Font("Menlo", Font.PLAIN, 9));
-				if (whoWith.equals("dentist") && (patientNumberString.equals("13"))) {
-					btnNewButton_1.setText("HOLIDAY D");
-					btnNewButton_2.setText("HOLIDAY D END");
-				} else if(whoWith.equals("hygienist") && (patientNumberString.equals("13"))) {
-					btnNewButton_1.setText("HOLIDAY H");
-					btnNewButton_2.setText("HOLIDAY H END");
-				}
+				btnNewButton_2.setFont(new Font("Menlo", Font.PLAIN, 9));
+				btnNewButton_3.setFont(new Font("Menlo", Font.PLAIN, 9));
+				btnNewButton_4.setFont(new Font("Menlo", Font.PLAIN, 9));
+				btnNewButton_5.setFont(new Font("Menlo", Font.PLAIN, 9));
+				
+
+				
+				//if (whoWith.equals("dentist") && (patientNumberString.equals("13"))) {
+					//btnNewButton_1.setText("HOLIDAY D");
+					//btnNewButton_2.setText("HOLIDAY D END");
+				//} else if(whoWith.equals("hygienist") && (patientNumberString.equals("13"))) {
+					//btnNewButton_1.setText("HOLIDAY H");
+					//btnNewButton_2.setText("HOLIDAY H END");
+				//}
 				btnNewButton_1.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						AppointmentDetails a = new AppointmentDetails(patientName, timeSub, dateSubString, whoWith);
@@ -322,13 +338,11 @@ public class CalendarTwo {
 
 				
 				// Holiday over multiple screens !! ! ! ! 
-				SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 				String fullDate = sdf.format(cal.getTime());
-				System.out.println(fullDate);
-				System.out.println(fullDate + " / 2017-12-1 / 2017-12-7");
 				
 				
-				System.out.println(cal.getTime());
+				
 
 				
 				//String startDateHoliday = dateDentist1[b].substring(0,10);
@@ -338,7 +352,7 @@ public class CalendarTwo {
 				//System.out.println("End date " + b + ": " + endDateHoliday);
 				
 				
-				
+				/*
 				if (patientName.equals("Holiday")) {
 					btnNewButton_1.setBackground(Color.red);
 					if ((dayOfWeek).equals("Monday")) {					
@@ -353,6 +367,33 @@ public class CalendarTwo {
 						fridayApps.add(btnNewButton_1);
 					}
 				}
+				*/
+				
+				
+				
+				GregorianCalendar calDayTwo = new GregorianCalendar();
+				calDayTwo.add(calDayTwo.DATE, 1);
+				Date x2 = calDayTwo.getTime();
+				
+				Date x = cal.getTime(); // monday
+				
+				Calendar c = cal.getInstance(); // tuesday
+				c.add(Calendar.DATE, -5);
+				Date newDate = c.getTime();
+				
+				Calendar c2 = cal.getInstance(); // wednesday
+				c2.add(Calendar.DATE, -4);
+				Date newDate2 = c2.getTime();
+				
+				Calendar c3 = cal.getInstance(); // thursday
+				c3.add(Calendar.DATE, -3);
+				Date newDate3 = c3.getTime();
+				
+				Calendar c4 = cal.getInstance(); // friday
+				c4.add(Calendar.DATE, -2);
+				Date newDate4 = c4.getTime();
+			
+
 				
 				
 				ArrayList<String> list = (Appointment.getHolidayDates("dentist"));  
@@ -360,60 +401,66 @@ public class CalendarTwo {
 				for (int i1=0; i1<dateDentist.length; i1++) {
 					//System.out.println(dateDentist[i1]);
 					String startDateHoliday = dateDentist[i1].substring(0,10);
-					//System.out.println(startDateHoliday);
 					String endDateHoliday = dateDentist[i1].substring(10,20);
 					try {
-						//System.out.println("got here");
-						//System.out.println((isWithinRange(dateComplete, startDateHoliday, endDateHoliday)));
-
-						if (isWithinRange(dateComplete, startDateHoliday, endDateHoliday)) {
-							if ((dayOfWeek).equals("Monday")) {	
-								btnNewButton_1.setText("HOLIDAY");
-								mondayApps.add(btnNewButton_1);
-							} else if ((dayOfWeek).equals("Tuesday")) {
-								btnNewButton_1.setText("HOLIDAY");
-								tuesdayApps.add(btnNewButton_1);
-							} else if ((dayOfWeek).equals("Wednesday")) {
-								btnNewButton_1.setText("HOLIDAY");
-								wednesdayApps.add(btnNewButton_1);
-							} else if ((dayOfWeek).equals("Thursday")) {
-								btnNewButton_1.setText("HOLIDAY");
-								thursdayApps.add(btnNewButton_1);
-							} else if ((dayOfWeek).equals("Friday")) {
-								btnNewButton_1.setText("HOLIDAY");
-								fridayApps.add(btnNewButton_1);
-							}
+						DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+						//DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+						Date convertedDate = parser.parse(startDateHoliday);
+						//System.out.println("THIS IS THE NEW START DATE" + convertedDate);
+						
+						DateFormat parser2 = new SimpleDateFormat("yyyy-MM-dd");
+						//DateFormat formatter2 = new SimpleDateFormat("yyyy-mm-dd");
+						Date convertedDate2 = parser2.parse(endDateHoliday);
+						//System.out.println("THIS IS THE NEW END DATE" + convertedDate2);
+						
+						btnNewButton_1.setText("Hol - D");
+						btnNewButton_2.setText("Hol - D");
+						btnNewButton_3.setText("Hol - D");
+						btnNewButton_4.setText("Hol - D");
+						btnNewButton_5.setText("Hol - D");
+						
+						if (isWithinRange2(x, convertedDate, convertedDate2)) {					
+							mondayApps.add(btnNewButton_1);
+							System.out.println("ftysadhkj");
+							
+						}if (isWithinRange2(newDate, convertedDate, convertedDate2)) {
+								tuesdayApps.add(btnNewButton_2);
+								
+						}if(isWithinRange2(newDate2, convertedDate, convertedDate2)) {
+									wednesdayApps.add(btnNewButton_3);
+						
+						}if(isWithinRange2(newDate3, convertedDate, convertedDate2)) {
+							thursdayApps.add(btnNewButton_4);
+							
+						}if(isWithinRange2(newDate4, convertedDate, convertedDate2)) {
+							fridayApps.add(btnNewButton_5);
 						}
-					} catch (ParseException e1) {
+						
+						
+						
+					} catch (ParseException e2) {
 						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						e2.printStackTrace();
 					}
 				}
-				
-				
-				
-				
-				
-				if ((dayOfWeek).equals("Monday")) {					
-					mondayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Tuesday")) {
-					tuesdayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Wednesday")) {
-					wednesdayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Thursday")) {
-					thursdayApps.add(btnNewButton_1);
-				} else if ((dayOfWeek).equals("Friday")) {
-					fridayApps.add(btnNewButton_1);
-				}
 			}
+			
 		}		
 	}
 	
 	
 	boolean isWithinRange(Date patientStartDate, String startDate, String endDate) throws ParseException {
 		Date startDateDate=new SimpleDateFormat("YYYY-MM-DD").parse(startDate);
+		//System.out.println(startDateDate);
+		
 		Date endDateDate = new SimpleDateFormat("YYYY-MM-DD").parse(endDate);
+		//System.out.println(endDateDate);
 	   return !(patientStartDate.before(startDateDate) || patientStartDate.after(endDateDate));
+	}
+	
+	boolean isWithinRange2(Date patientStartDate, Date startDate, Date endDate) throws ParseException {
+
+	   return !(patientStartDate.before(startDate) || patientStartDate.after(endDate));
 	}
 	
 	//Code to display all appointments

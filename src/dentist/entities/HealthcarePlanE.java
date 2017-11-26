@@ -162,6 +162,8 @@ public class HealthcarePlanE {
 	    		stmt.setString(5, "1");
 	    		stmt.setString(6, "9");
 	    		
+	    		stmt.executeUpdate();
+	    		
 	    	} else if (newPlan.equals(mmS)) {
 	    		stmt.setString(1, "Maintenance Plan");
 	    		stmt.setString(2, "15");
@@ -171,6 +173,8 @@ public class HealthcarePlanE {
 	    		stmt.setString(5, "2");
 	    		stmt.setString(6, "4");
 	    		
+	    		stmt.executeUpdate();
+	    		
 	    	} else if (newPlan.equals(ohS)) {
 	    		stmt.setString(1, "Oral Health Plan");
 	    		stmt.setString(2, "21");
@@ -179,6 +183,8 @@ public class HealthcarePlanE {
 	    		stmt.setString(4, "3");
 	    		stmt.setString(5, "3");
 	    		stmt.setString(6, "0");
+	    		
+	    		stmt.executeUpdate();
 	    	}
 	    	
 	    	

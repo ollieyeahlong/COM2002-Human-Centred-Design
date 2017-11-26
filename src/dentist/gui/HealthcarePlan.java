@@ -29,6 +29,8 @@ public class HealthcarePlan {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		HealthcarePlan n = new HealthcarePlan();
 
 	}
 
@@ -165,6 +167,8 @@ public class HealthcarePlan {
 				
 				String patientNumber = name.substring(name.length() - 1);
 				HealthcarePlanE.addToPlan(patientNumber, newPlan);
+				System.out.println(patientNumber);
+				System.out.println(newPlan);
 				JOptionPane.showMessageDialog(frmHealthcarePlan.getContentPane(), "Success. " + name + " Added to " + newPlan + ".");
 				frmHealthcarePlan.dispose();
 				
