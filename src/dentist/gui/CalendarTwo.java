@@ -325,7 +325,7 @@ public class CalendarTwo {
 				SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 				String fullDate = sdf.format(cal.getTime());
 				
-
+				
 				
 
 				
@@ -358,6 +358,17 @@ public class CalendarTwo {
 				for (int i1=0; i1<dateDentist.length; i1++) {
 					//System.out.println(dateDentist[i1]);
 					String startDateHoliday = dateDentist[i1].substring(0,10);
+					System.out.println(startDateHoliday);
+					
+					DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+					DateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
+					//Date convertedDate = parser.parse(datePlayed);
+					//String output = formatter.format(convertedDate);
+					
+					
+					
+					
+					
 					//System.out.println(startDateHoliday);
 					String endDateHoliday = dateDentist[i1].substring(10,20);
 					try {
