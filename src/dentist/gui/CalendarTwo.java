@@ -358,11 +358,11 @@ public class CalendarTwo {
 				for (int i1=0; i1<dateDentist.length; i1++) {
 					//System.out.println(dateDentist[i1]);
 					String startDateHoliday = dateDentist[i1].substring(0,10);
-					System.out.println(startDateHoliday);
+					//System.out.println(startDateHoliday);
 					
-					DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
-					DateFormat formatter = new SimpleDateFormat("MMM dd, yyyy");
-					//Date convertedDate = parser.parse(datePlayed);
+					
+					
+					
 					//String output = formatter.format(convertedDate);
 					
 					
@@ -371,6 +371,87 @@ public class CalendarTwo {
 					
 					//System.out.println(startDateHoliday);
 					String endDateHoliday = dateDentist[i1].substring(10,20);
+					
+					
+					try {
+						DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+						//DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+						Date convertedDate = parser.parse(startDateHoliday);
+						//System.out.println("THIS IS THE NEW START DATE" + convertedDate);
+						
+						DateFormat parser2 = new SimpleDateFormat("yyyy-MM-dd");
+						//DateFormat formatter2 = new SimpleDateFormat("yyyy-mm-dd");
+						Date convertedDate2 = parser2.parse(endDateHoliday);
+						//System.out.println("THIS IS THE NEW END DATE" + convertedDate2);
+						
+						Date x = cal.getTime();
+						
+						
+						GregorianCalendar calDayTwo = new GregorianCalendar();
+						calDayTwo.add(calDayTwo.DAY_OF_WEEK, +1);
+						Date x2 = calDayTwo.getTime();
+						
+						GregorianCalendar calDayThree = new GregorianCalendar();
+						calDayTwo.add(calDayThree.DAY_OF_WEEK, +2);
+						Date x3 = calDayThree.getTime();
+						
+						GregorianCalendar calDayFour = new GregorianCalendar();
+						calDayTwo.add(calDayFour.DAY_OF_WEEK, +3);
+						Date x4 = calDayFour.getTime();
+						
+						GregorianCalendar calDayFive = new GregorianCalendar();
+						calDayTwo.add(calDayFive.DAY_OF_WEEK, +4);
+						Date x5 = calDayFive.getTime();
+						
+						
+						
+						
+						if(isWithinRange2(x, convertedDate, convertedDate2)) {
+							if ((dayOfWeek).equals("Monday")) {	
+								btnNewButton_1.setText("HOLIDAY!!!!");
+								mondayApps.add(btnNewButton_1);
+							}
+						}
+						
+						else if(isWithinRange2(x2, convertedDate, convertedDate2)) {
+							if ((dayOfWeek).equals("Tuesday")) {	
+								btnNewButton_1.setText("HOLIDAY!!!!");
+								tuesdayApps.add(btnNewButton_1);
+							}
+						}
+						
+						else if(isWithinRange2(x3, convertedDate, convertedDate2)) {
+							if ((dayOfWeek).equals("Wednesday")) {	
+								btnNewButton_1.setText("HOLIDAY!!!!");
+								wednesdayApps.add(btnNewButton_1);
+							}
+						}
+						
+						else if(isWithinRange2(x4, convertedDate, convertedDate2)) {
+							if ((dayOfWeek).equals("Thursday")) {	
+								btnNewButton_1.setText("HOLIDAY!!!!");
+								thursdayApps.add(btnNewButton_1);
+							}
+						}
+						
+						else if(isWithinRange2(x5, convertedDate, convertedDate2)) {
+							if ((dayOfWeek).equals("Friday")) {	
+								btnNewButton_1.setText("HOLIDAY!!!!");
+								fridayApps.add(btnNewButton_1);
+							}
+						}
+						
+						
+						
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					
+					
+					
+					
 					try {
 						//System.out.println("got here");
 						//System.out.println((isWithinRange(dateComplete, startDateHoliday, endDateHoliday)));
@@ -421,11 +502,16 @@ public class CalendarTwo {
 	
 	boolean isWithinRange(Date patientStartDate, String startDate, String endDate) throws ParseException {
 		Date startDateDate=new SimpleDateFormat("YYYY-MM-DD").parse(startDate);
-		System.out.println(startDateDate);
+		//System.out.println(startDateDate);
 		
 		Date endDateDate = new SimpleDateFormat("YYYY-MM-DD").parse(endDate);
-		System.out.println(endDateDate);
+		//System.out.println(endDateDate);
 	   return !(patientStartDate.before(startDateDate) || patientStartDate.after(endDateDate));
+	}
+	
+	boolean isWithinRange2(Date patientStartDate, Date startDate, Date endDate) throws ParseException {
+
+	   return !(patientStartDate.before(startDate) || patientStartDate.after(endDate));
 	}
 	
 	//Code to display all appointments

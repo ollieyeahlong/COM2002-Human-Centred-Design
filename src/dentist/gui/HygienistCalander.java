@@ -8,6 +8,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
+import java.text.ParseException;
 //import java.sql.Date;
 //import java.sql.Time;
 import java.text.SimpleDateFormat;
@@ -36,16 +37,17 @@ public class HygienistCalander {
 	private JButton nextWeek;
 	private JLabel currentDate;
 	private JLabel lblMonday;
-	private JPanel mondayApps;
-	private JPanel tuesdayApps;
-	private JPanel wednesdayApps;
-	private JPanel thursdayApps;
-	private JPanel fridayApps;
+	JPanel mondayApps;
+	JPanel tuesdayApps;
+	JPanel wednesdayApps;
+	JPanel thursdayApps;
+	JPanel fridayApps;
 	
 	GregorianCalendar cal = new GregorianCalendar();
 	
 	private ArrayList<String> Appointments;
 	private JButton btnNewButton;
+	private JButton btnNewButton_2;
 	private JButton btnNewButton_1;
 
 	/**
@@ -137,6 +139,7 @@ public class HygienistCalander {
 		panel_1.setLayout(gbl_panel_1);
 		
 		lblMonday = new JLabel("Monday");
+		lblMonday.setFont(new Font("Menlo", Font.PLAIN, 10));
 		GridBagConstraints gbc_lblMonday = new GridBagConstraints();
 		gbc_lblMonday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblMonday.gridx = 0;
@@ -144,7 +147,7 @@ public class HygienistCalander {
 		panel_1.add(lblMonday, gbc_lblMonday);
 		
 		JLabel lblTuesday = new JLabel("Tuesday");
-		lblTuesday.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblTuesday.setFont(new Font("Menlo", Font.PLAIN, 10));
 		GridBagConstraints gbc_lblTuesday = new GridBagConstraints();
 		gbc_lblTuesday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblTuesday.gridx = 1;
@@ -152,7 +155,7 @@ public class HygienistCalander {
 		panel_1.add(lblTuesday, gbc_lblTuesday);
 		
 		JLabel lblWednesday = new JLabel("Wednesday");
-		lblWednesday.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblWednesday.setFont(new Font("Menlo", Font.PLAIN, 10));
 		GridBagConstraints gbc_lblWednesday = new GridBagConstraints();
 		gbc_lblWednesday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblWednesday.gridx = 2;
@@ -160,7 +163,7 @@ public class HygienistCalander {
 		panel_1.add(lblWednesday, gbc_lblWednesday);
 		
 		JLabel lblThursday = new JLabel("Thursday");
-		lblThursday.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblThursday.setFont(new Font("Menlo", Font.PLAIN, 10));
 
 		GridBagConstraints gbc_lblThursday = new GridBagConstraints();
 		gbc_lblThursday.insets = new Insets(10, 0, 10, 5);
@@ -169,7 +172,7 @@ public class HygienistCalander {
 		panel_1.add(lblThursday, gbc_lblThursday);
 		
 		JLabel lblFriday = new JLabel("Friday");
-		lblFriday.setFont(new Font("Menlo", Font.PLAIN, 13));
+		lblFriday.setFont(new Font("Menlo", Font.PLAIN, 10));
 
 		GridBagConstraints gbc_lblFriday = new GridBagConstraints();
 		gbc_lblFriday.insets = new Insets(10, 0, 10, 0);
@@ -252,7 +255,7 @@ public class HygienistCalander {
 	
 	public void updatePanel() {
 		
-		
+		clear();
 		int dayOfMonth = cal.get(cal.DAY_OF_MONTH);
 		int monthOfYear = cal.get(cal.MONTH);
 		monthOfYear = monthOfYear + 1;
@@ -260,7 +263,7 @@ public class HygienistCalander {
 		//System.out.println(dayOfMonth);
 		int rangeForWeek = dayOfMonth + 5;
 		
-		ArrayList<String> allStarDates = (Appointment.getHygienistAppointments());  
+		ArrayList<String> allStarDates = (Appointment.getAllAppointments());  
 		String [] arrayOfAllStartDates = allStarDates.toArray(new String[allStarDates.size()]);
 		
 		for (int i=0; i<arrayOfAllStartDates.length; i++) {
@@ -278,65 +281,202 @@ public class HygienistCalander {
 			Integer yearSubInteger = Integer.parseInt(yearSubString);
 			
 			if ((dayOfWeekSubInteger < rangeForWeek) && (dayOfWeekSubInteger >= dayOfMonth) && (monthSubInteger == (monthOfYear)) && (yearSubInteger == (year))) {
-				System.out.println("Day Is Valid" + dateSubString);
-				System.out.println("Month int is: " + monthSubInteger);
+				//System.out.println("Day Is Valid " + dateSubString);
+				//System.out.println("Month int is: " + monthSubInteger);
 				
 				//yearSubInteger
 				//monthSubInteger
 				//dayOfWeekSubInteger
 
-			    Date dateComplete = (new GregorianCalendar(yearSubInteger, (monthSubInteger -1), dayOfWeekSubInteger)).getTime();
-			    System.out.println(dateComplete);
-			    String dayOfWeek = new SimpleDateFormat("EEEE").format(dateComplete);
+				    Date dateComplete = (new GregorianCalendar(yearSubInteger, (monthSubInteger -1), dayOfWeekSubInteger)).getTime();
+				    //System.out.println(dateComplete);
+				    String dayOfWeek = new SimpleDateFormat("EEEE").format(dateComplete);
+				    
+				    
 
-			    
-
-			String patientNumberString = Appointment.getPatientNameFromDateAndTime(timeSub, dateSubString);    
-			String patientName = Patient.fetchForename(patientNumberString);
-			String whoWith = Appointment.getWhoIsTreating(timeSub, dateSubString, patientNumberString);
-			
-			btnNewButton_1 = new JButton(dateSubString + "@" + timeSub);
-			btnNewButton_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					AppointmentDetails a = new AppointmentDetails(patientName, timeSub, dateSubString, whoWith);
+				String patientNumberString = Appointment.getPatientNameFromDateAndTime(timeSub, dateSubString);    
+				String patientName = Patient.fetchForename(patientNumberString);
+				String whoWith = Appointment.getWhoIsTreating(timeSub, dateSubString, patientNumberString);
+				
+				btnNewButton_1 = new JButton("@" + timeSub);
+				btnNewButton_2 = new JButton("@" + timeSub);
+				btnNewButton_1.setFont(new Font("Menlo", Font.PLAIN, 9));
+				if(whoWith.equals("hygienist") && (patientNumberString.equals("13"))) {
+					btnNewButton_1.setText("HOLIDAY H");
+					btnNewButton_2.setText("HOLIDAY H END");
 				}
-			});
-			
-			System.out.println("Error happens in here");
-			System.out.println(dayOfWeek);
-			
-			if ((dayOfWeek).equals("Monday")) {
-				mondayApps.add(btnNewButton_1);
-			} else if ((dayOfWeek).equals("Tuesday")) {
-				tuesdayApps.add(btnNewButton_1);
-			} else if ((dayOfWeek).equals("Wednesday")) {
-				wednesdayApps.add(btnNewButton_1);
-			} else if ((dayOfWeek).equals("Thursday")) {
-				thursdayApps.add(btnNewButton_1);
-			} else if ((dayOfWeek).equals("Friday")) {
-				fridayApps.add(btnNewButton_1);
-			}
-			
-			
-			
-			
-			
-			
-			
-			
-		}
+				btnNewButton_1.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						AppointmentDetails a = new AppointmentDetails(patientName, timeSub, dateSubString, whoWith);
+					}
+				});
 				
 				
+				// if the selected date is between holiday then add to page.
 				
-				
-				
-			}
+				ArrayList<String> list1 = (Appointment.getHolidayDates("dentist"));  
+				String [] dateDentist1 = list1.toArray(new String[list1.size()]);	//list of holiday start dates and end dates
 
-			
-			
-		}
-		
+				
+				// Holiday over multiple screens !! ! ! ! 
+				SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+				String fullDate = sdf.format(cal.getTime());
+				
+				
+				
+
+				
+				//String startDateHoliday = dateDentist1[b].substring(0,10);
+				//System.out.println("Start date " + b + ": " + startDateHoliday);
+
+				//String endDateHoliday = dateDentist1[b].substring(10,20);
+				//System.out.println("End date " + b + ": " + endDateHoliday);
+				
+				
+				
+				if (patientName.equals("Holiday")) {
+					btnNewButton_1.setBackground(Color.red);
+					if ((dayOfWeek).equals("Monday")) {					
+						mondayApps.add(btnNewButton_1);
+					} else if ((dayOfWeek).equals("Tuesday")) {
+						tuesdayApps.add(btnNewButton_1);
+					} else if ((dayOfWeek).equals("Wednesday")) {
+						wednesdayApps.add(btnNewButton_1);
+					} else if ((dayOfWeek).equals("Thursday")) {
+						thursdayApps.add(btnNewButton_1);
+					} else if ((dayOfWeek).equals("Friday")) {
+						fridayApps.add(btnNewButton_1);
+					}
+				}
+				
+				
+				ArrayList<String> list = (Appointment.getHolidayDates("dentist"));  
+				String [] dateDentist = list.toArray(new String[list.size()]);				
+				for (int i1=0; i1<dateDentist.length; i1++) {
+					//System.out.println(dateDentist[i1]);
+					String startDateHoliday = dateDentist[i1].substring(0,10);
+					//System.out.println(startDateHoliday);
+					
+					
+					
+					
+					//String output = formatter.format(convertedDate);
+					
+					
+					
+					
+					
+					//System.out.println(startDateHoliday);
+					String endDateHoliday = dateDentist[i1].substring(10,20);
+					
+					
+					try {
+						DateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+						//DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+						Date convertedDate = parser.parse(startDateHoliday);
+						//System.out.println("THIS IS THE NEW START DATE" + convertedDate);
+						
+						DateFormat parser2 = new SimpleDateFormat("yyyy-MM-dd");
+						//DateFormat formatter2 = new SimpleDateFormat("yyyy-mm-dd");
+						Date convertedDate2 = parser2.parse(endDateHoliday);
+						//System.out.println("THIS IS THE NEW END DATE" + convertedDate2);
+						
+						Date x = cal.getTime();
+						
+						
+						GregorianCalendar calDayTwo = new GregorianCalendar();
+						calDayTwo.add(calDayTwo.DAY_OF_WEEK, +1);
+						Date x2 = calDayTwo.getTime();
+						
+						GregorianCalendar calDayThree = new GregorianCalendar();
+						calDayTwo.add(calDayThree.DAY_OF_WEEK, +2);
+						Date x3 = calDayThree.getTime();
+						
+						GregorianCalendar calDayFour = new GregorianCalendar();
+						calDayTwo.add(calDayFour.DAY_OF_WEEK, +3);
+						Date x4 = calDayFour.getTime();
+						
+						GregorianCalendar calDayFive = new GregorianCalendar();
+						calDayTwo.add(calDayFive.DAY_OF_WEEK, +4);
+						Date x5 = calDayFive.getTime();
+						
+						
+						
+						
+						
+						
+						
+						
+					} catch (ParseException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
+					
+					
+					
+					
+					
+					try {
+						//System.out.println("got here");
+						//System.out.println((isWithinRange(dateComplete, startDateHoliday, endDateHoliday)));
+
+						if (isWithinRange(dateComplete, startDateHoliday, endDateHoliday)) {
+							if ((dayOfWeek).equals("Monday")) {	
+								btnNewButton_1.setText("HOLIDAY");
+								mondayApps.add(btnNewButton_1);
+							} else if ((dayOfWeek).equals("Tuesday")) {
+								btnNewButton_1.setText("HOLIDAY");
+								tuesdayApps.add(btnNewButton_1);
+							} else if ((dayOfWeek).equals("Wednesday")) {
+								btnNewButton_1.setText("HOLIDAY");
+								wednesdayApps.add(btnNewButton_1);
+							} else if ((dayOfWeek).equals("Thursday")) {
+								btnNewButton_1.setText("HOLIDAY");
+								thursdayApps.add(btnNewButton_1);
+							} else if ((dayOfWeek).equals("Friday")) {
+								btnNewButton_1.setText("HOLIDAY");
+								fridayApps.add(btnNewButton_1);
+							}
+						}
+					} catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+				
+				
+				
+				
+				if ((dayOfWeek).equals("Monday")) {					
+					mondayApps.add(btnNewButton_1);
+				} else if ((dayOfWeek).equals("Tuesday")) {
+					tuesdayApps.add(btnNewButton_1);
+				} else if ((dayOfWeek).equals("Wednesday")) {
+					wednesdayApps.add(btnNewButton_1);
+				} else if ((dayOfWeek).equals("Thursday")) {
+					thursdayApps.add(btnNewButton_1);
+				} else if ((dayOfWeek).equals("Friday")) {
+					fridayApps.add(btnNewButton_1);
+				}
+			}
+		}		
+	}
 	
+	
+	boolean isWithinRange(Date patientStartDate, String startDate, String endDate) throws ParseException {
+		Date startDateDate=new SimpleDateFormat("YYYY-MM-DD").parse(startDate);
+		//System.out.println(startDateDate);
+		
+		Date endDateDate = new SimpleDateFormat("YYYY-MM-DD").parse(endDate);
+		//System.out.println(endDateDate);
+	   return !(patientStartDate.before(startDateDate) || patientStartDate.after(endDateDate));
+	}
+	
+	boolean isWithinRange2(Date patientStartDate, Date startDate, Date endDate) throws ParseException {
+
+	   return !(patientStartDate.before(startDate) || patientStartDate.after(endDate));
+	}
 	
 	//Code to display all appointments
 	public JPanel receptionistView() {		
