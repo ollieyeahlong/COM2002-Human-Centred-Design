@@ -322,19 +322,11 @@ public class CalendarTwo {
 
 				
 				// Holiday over multiple screens !! ! ! ! 
-				SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+				SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 				String fullDate = sdf.format(cal.getTime());
-				System.out.println(fullDate);
-				System.out.println(fullDate + " / 2017-12-1 / 2017-12-7");
 				
-				DateFormat df = new SimpleDateFormat("YYYY-MM-dd");
-				try {
-					Date mydate = df.parse(fullDate);
-					System.out.println(mydate);
-				} catch (ParseException e3) {
-					// TODO Auto-generated catch block
-					e3.printStackTrace();
-				}
+
+				
 
 				
 				//String startDateHoliday = dateDentist1[b].substring(0,10);
@@ -418,7 +410,10 @@ public class CalendarTwo {
 	
 	boolean isWithinRange(Date patientStartDate, String startDate, String endDate) throws ParseException {
 		Date startDateDate=new SimpleDateFormat("YYYY-MM-DD").parse(startDate);
+		System.out.println(startDateDate);
+		
 		Date endDateDate = new SimpleDateFormat("YYYY-MM-DD").parse(endDate);
+		System.out.println(endDateDate);
 	   return !(patientStartDate.before(startDateDate) || patientStartDate.after(endDateDate));
 	}
 	
