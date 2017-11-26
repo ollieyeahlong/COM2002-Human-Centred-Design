@@ -52,23 +52,14 @@ public class Hygienist extends JFrame {
 	private void makeAppointmentsView() {
 		
 		txtSearchForAppointment = new JTextField();
+		txtSearchForAppointment.setEditable(false);
+		txtSearchForAppointment.setEnabled(false);
+		txtSearchForAppointment.setBackground(Color.LIGHT_GRAY);
 		txtSearchForAppointment.setForeground(Color.BLACK);
 		txtSearchForAppointment.setFont(new Font("Menlo", Font.ITALIC, 13));
-		txtSearchForAppointment.setText("Search For Appointment");
-		txtSearchForAppointment.setBounds(19, 19, 569, 26);
+		txtSearchForAppointment.setBounds(6, 19, 751, 26);
 		txtSearchForAppointment.setColumns(10);
-		contentFrame.getContentPane().add(txtSearchForAppointment);	
-		//__________________________________________________________________________
-				
-		JButton searchButton = new JButton("Search");
-		searchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				contentFrame.dispose();
-			}
-		});
-		searchButton.setFont(new Font("Menlo", Font.PLAIN, 13));
-		searchButton.setBounds(600, 19, 117, 29);
-		contentFrame.getContentPane().add(searchButton);
+		contentFrame.getContentPane().add(txtSearchForAppointment);
 		//__________________________________________________________________________
 		
 		JButton finishedButton = new JButton("Finished Appointment");
@@ -78,7 +69,7 @@ public class Hygienist extends JFrame {
 				RecordTreatment r = new RecordTreatment();
 			}
 		});
-		finishedButton.setFont(new Font("Menlo", Font.PLAIN, 13));
+		finishedButton.setFont(new Font("Menlo", Font.PLAIN, 10));
 		finishedButton.setBounds(6, 202, 155, 29);
 		contentFrame.getContentPane().add(finishedButton);
 		//__________________________________________________________________________

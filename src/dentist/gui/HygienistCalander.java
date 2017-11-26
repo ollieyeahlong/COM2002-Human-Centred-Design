@@ -26,6 +26,7 @@ import javax.swing.border.LineBorder;
 
 import dentist.entities.Appointment;
 import dentist.entities.Patient;
+import java.awt.Font;
 
 public class HygienistCalander {
 
@@ -89,6 +90,7 @@ public class HygienistCalander {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		prevWeek = new JButton("<");
+		prevWeek.setFont(new Font("Menlo", Font.PLAIN, 13));
 		prevWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -101,6 +103,7 @@ public class HygienistCalander {
 		panel.add(prevWeek, BorderLayout.WEST);
 		
 		nextWeek = new JButton(">");
+		nextWeek.setFont(new Font("Menlo", Font.PLAIN, 13));
 		nextWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cal.add(cal.WEEK_OF_YEAR, +1);
@@ -113,11 +116,12 @@ public class HygienistCalander {
 		panel.add(nextWeek, BorderLayout.EAST);
 		
 		currentDate = new JLabel("Week");
+		currentDate.setFont(new Font("Menlo", Font.PLAIN, 13));
 		currentDate.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		//String month = realCalendar.getDisplayName(realCalendar.MONTH, realCalendar.LONG, Locale.US);
 	    currentDate.setText("");
-	    updateWeek();
+	    
 		panel.add(currentDate, BorderLayout.CENTER);
 		
 		
@@ -140,6 +144,7 @@ public class HygienistCalander {
 		panel_1.add(lblMonday, gbc_lblMonday);
 		
 		JLabel lblTuesday = new JLabel("Tuesday");
+		lblTuesday.setFont(new Font("Menlo", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblTuesday = new GridBagConstraints();
 		gbc_lblTuesday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblTuesday.gridx = 1;
@@ -147,6 +152,7 @@ public class HygienistCalander {
 		panel_1.add(lblTuesday, gbc_lblTuesday);
 		
 		JLabel lblWednesday = new JLabel("Wednesday");
+		lblWednesday.setFont(new Font("Menlo", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblWednesday = new GridBagConstraints();
 		gbc_lblWednesday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblWednesday.gridx = 2;
@@ -154,6 +160,7 @@ public class HygienistCalander {
 		panel_1.add(lblWednesday, gbc_lblWednesday);
 		
 		JLabel lblThursday = new JLabel("Thursday");
+		lblThursday.setFont(new Font("Menlo", Font.PLAIN, 13));
 
 		GridBagConstraints gbc_lblThursday = new GridBagConstraints();
 		gbc_lblThursday.insets = new Insets(10, 0, 10, 5);
@@ -162,6 +169,7 @@ public class HygienistCalander {
 		panel_1.add(lblThursday, gbc_lblThursday);
 		
 		JLabel lblFriday = new JLabel("Friday");
+		lblFriday.setFont(new Font("Menlo", Font.PLAIN, 13));
 
 		GridBagConstraints gbc_lblFriday = new GridBagConstraints();
 		gbc_lblFriday.insets = new Insets(10, 0, 10, 0);
@@ -216,6 +224,7 @@ public class HygienistCalander {
 		gbc_panel_6.gridx = 4;
 		gbc_panel_6.gridy = 1;
 		panel_1.add(fridayApps, gbc_panel_6);
+		updateWeek();
 	}
 	
 	public void updateWeek() {
@@ -293,20 +302,29 @@ public class HygienistCalander {
 				}
 			});
 			
-			switch (dayOfWeek) {
-			case "Monday":  mondayApps.add(btnNewButton_1);
-			break;
-			case "Tuesday":  tuesdayApps.add(btnNewButton_1);
-			break;
-			case "Wednesday":  wednesdayApps.add(btnNewButton_1);
-			break;
-			case "Thursday":  thursdayApps.add(btnNewButton_1);
-			break;
-			case "Friday":  fridayApps.add(btnNewButton_1);
-			break;
+			System.out.println("Error happens in here");
+			System.out.println(dayOfWeek);
 			
-			
+			if ((dayOfWeek).equals("Monday")) {
+				mondayApps.add(btnNewButton_1);
+			} else if ((dayOfWeek).equals("Tuesday")) {
+				tuesdayApps.add(btnNewButton_1);
+			} else if ((dayOfWeek).equals("Wednesday")) {
+				wednesdayApps.add(btnNewButton_1);
+			} else if ((dayOfWeek).equals("Thursday")) {
+				thursdayApps.add(btnNewButton_1);
+			} else if ((dayOfWeek).equals("Friday")) {
+				fridayApps.add(btnNewButton_1);
 			}
+			
+			
+			
+			
+			
+			
+			
+			
+		}
 				
 				
 				
@@ -318,7 +336,7 @@ public class HygienistCalander {
 			
 		}
 		
-	}
+	
 	
 	//Code to display all appointments
 	public JPanel receptionistView() {		

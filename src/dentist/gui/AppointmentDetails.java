@@ -30,7 +30,9 @@ public class AppointmentDetails {
 	 */
 	public AppointmentDetails(String patientName, String timeSub, String dateSubString, String whoWith) {
 		initialize(patientName, timeSub, dateSubString, whoWith);
+		frmAppointmentDetails.getContentPane().setLayout(null);
 		frmAppointmentDetails.setVisible(true);
+		
 	}
 
 	/**
@@ -43,8 +45,10 @@ public class AppointmentDetails {
 		frmAppointmentDetails.setBounds(100, 100, 450, 159);
 		frmAppointmentDetails.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmAppointmentDetails.getContentPane().setLayout(null);
+		frmAppointmentDetails.getContentPane().setLayout(null);
 		
 		JButton btnClose = new JButton("Close");
+		btnClose.setFont(new Font("Menlo", Font.PLAIN, 13));
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmAppointmentDetails.dispose();
@@ -70,17 +74,17 @@ public class AppointmentDetails {
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setText(patientName);
-		lblNewLabel_1.setBounds(134, 6, 281, 16);
+		lblNewLabel_1.setBounds(134, 6, 205, 16);
 		frmAppointmentDetails.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setText(timeSub);
-		lblNewLabel_2.setBounds(131, 34, 313, 16);
+		lblNewLabel_2.setBounds(131, 34, 208, 16);
 		frmAppointmentDetails.getContentPane().add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("New label");
 		
-		lblNewLabel_3.setBounds(134, 62, 318, 16);
+		lblNewLabel_3.setBounds(134, 62, 205, 16);
 		frmAppointmentDetails.getContentPane().add(lblNewLabel_3);
 		lblNewLabel_3.setText(dateSubString);
 		JLabel lblPartner = new JLabel("Partner");
@@ -89,7 +93,7 @@ public class AppointmentDetails {
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setText(whoWith);
-		lblNewLabel_4.setBounds(134, 90, 61, 16);
+		lblNewLabel_4.setBounds(134, 90, 205, 16);
 		frmAppointmentDetails.getContentPane().add(lblNewLabel_4);
 	}
 

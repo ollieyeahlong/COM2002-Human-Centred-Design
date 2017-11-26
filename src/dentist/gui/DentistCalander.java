@@ -26,6 +26,7 @@ import javax.swing.border.LineBorder;
 
 import dentist.entities.Appointment;
 import dentist.entities.Patient;
+import java.awt.Font;
 
 public class DentistCalander {
 
@@ -89,6 +90,7 @@ public class DentistCalander {
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		prevWeek = new JButton("<");
+		prevWeek.setFont(new Font("Menlo", Font.PLAIN, 13));
 		prevWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -101,6 +103,7 @@ public class DentistCalander {
 		panel.add(prevWeek, BorderLayout.WEST);
 		
 		nextWeek = new JButton(">");
+		nextWeek.setFont(new Font("Menlo", Font.PLAIN, 13));
 		nextWeek.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cal.add(cal.WEEK_OF_YEAR, +1);
@@ -113,11 +116,12 @@ public class DentistCalander {
 		panel.add(nextWeek, BorderLayout.EAST);
 		
 		currentDate = new JLabel("Week");
+		currentDate.setFont(new Font("Menlo", Font.PLAIN, 13));
 		currentDate.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		//String month = realCalendar.getDisplayName(realCalendar.MONTH, realCalendar.LONG, Locale.US);
 	    currentDate.setText("");
-	    updateWeek();
+	    
 		panel.add(currentDate, BorderLayout.CENTER);
 		
 		
@@ -133,6 +137,7 @@ public class DentistCalander {
 		panel_1.setLayout(gbl_panel_1);
 		
 		lblMonday = new JLabel("Monday");
+		lblMonday.setFont(new Font("Menlo", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblMonday = new GridBagConstraints();
 		gbc_lblMonday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblMonday.gridx = 0;
@@ -140,6 +145,7 @@ public class DentistCalander {
 		panel_1.add(lblMonday, gbc_lblMonday);
 		
 		JLabel lblTuesday = new JLabel("Tuesday");
+		lblTuesday.setFont(new Font("Menlo", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblTuesday = new GridBagConstraints();
 		gbc_lblTuesday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblTuesday.gridx = 1;
@@ -147,6 +153,7 @@ public class DentistCalander {
 		panel_1.add(lblTuesday, gbc_lblTuesday);
 		
 		JLabel lblWednesday = new JLabel("Wednesday");
+		lblWednesday.setFont(new Font("Menlo", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblWednesday = new GridBagConstraints();
 		gbc_lblWednesday.insets = new Insets(10, 0, 10, 5);
 		gbc_lblWednesday.gridx = 2;
@@ -154,6 +161,7 @@ public class DentistCalander {
 		panel_1.add(lblWednesday, gbc_lblWednesday);
 		
 		JLabel lblThursday = new JLabel("Thursday");
+		lblThursday.setFont(new Font("Menlo", Font.PLAIN, 13));
 
 		GridBagConstraints gbc_lblThursday = new GridBagConstraints();
 		gbc_lblThursday.insets = new Insets(10, 0, 10, 5);
@@ -162,6 +170,7 @@ public class DentistCalander {
 		panel_1.add(lblThursday, gbc_lblThursday);
 		
 		JLabel lblFriday = new JLabel("Friday");
+		lblFriday.setFont(new Font("Menlo", Font.PLAIN, 13));
 
 		GridBagConstraints gbc_lblFriday = new GridBagConstraints();
 		gbc_lblFriday.insets = new Insets(10, 0, 10, 0);
@@ -216,6 +225,7 @@ public class DentistCalander {
 		gbc_panel_6.gridx = 4;
 		gbc_panel_6.gridy = 1;
 		panel_1.add(fridayApps, gbc_panel_6);
+		updateWeek();
 	}
 	
 	public void updateWeek() {

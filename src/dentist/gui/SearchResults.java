@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class SearchResults {
 
@@ -78,15 +79,19 @@ public class SearchResults {
 		frmSearchResults.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel searchResultsL = new JLabel("There are");
+		searchResultsL.setFont(new Font("Menlo", Font.PLAIN, 13));
 		panel.add(searchResultsL);
 		
 		numResults = new JLabel("000");
+		numResults.setFont(new Font("Menlo", Font.PLAIN, 13));
 		panel.add(numResults);
 		
 		JLabel searchResultsL2 = new JLabel("result(s) for");
+		searchResultsL2.setFont(new Font("Menlo", Font.PLAIN, 13));
 		panel.add(searchResultsL2);
 		
 		searchQ = new JLabel();
+		searchQ.setFont(new Font("Menlo", Font.PLAIN, 13));
 		panel.add(searchQ);
 		
 		panel_1 = new JPanel();

@@ -71,7 +71,7 @@ public class AmendPatient {
 		
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setFont(new Font("Menlo", Font.PLAIN, 13));
-		lblNewLabel.setBounds(210, 102, 172, 16);
+		lblNewLabel.setBounds(211, 102, 172, 16);
 		frmAmendPatientDetails.getContentPane().add(lblNewLabel);
 		
 		JLabel lblDetailsToChange = new JLabel("Details to change");

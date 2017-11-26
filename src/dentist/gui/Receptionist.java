@@ -80,23 +80,14 @@ public class Receptionist extends JFrame {
 		//__________________________________________________________________________
 		
 		txtSearchForAppointment = new JTextField();
+		txtSearchForAppointment.setEnabled(false);
+		txtSearchForAppointment.setEditable(false);
+		txtSearchForAppointment.setBackground(Color.LIGHT_GRAY);
 		txtSearchForAppointment.setForeground(Color.BLACK);
 		txtSearchForAppointment.setFont(new Font("Menlo", Font.ITALIC, 13));
-		txtSearchForAppointment.setText("Search For Appointment");
-		txtSearchForAppointment.setBounds(19, 19, 569, 26);
+		txtSearchForAppointment.setBounds(6, 19, 718, 26);
 		txtSearchForAppointment.setColumns(10);
-		appointmentsView.add(txtSearchForAppointment);	
-		//__________________________________________________________________________
-				
-		JButton searchButton = new JButton("Search");
-		searchButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			
-			}
-		});
-		searchButton.setFont(new Font("Menlo", Font.PLAIN, 13));
-		searchButton.setBounds(600, 19, 117, 29);
-		appointmentsView.add(searchButton);
+		appointmentsView.add(txtSearchForAppointment);
 		//__________________________________________________________________________
 		
 		JButton bookButton = new JButton("New Appointment");
@@ -136,6 +127,18 @@ public class Receptionist extends JFrame {
 		logoutButton.setFont(new Font("Menlo", Font.PLAIN, 13));
 		logoutButton.setBounds(6, 400, 155, 29);
 		appointmentsView.add(logoutButton);
+		
+		JButton btnBookHoliday = new JButton("Book Holiday");
+		btnBookHoliday.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				BookHoliday b = new BookHoliday();
+				
+			}
+		});
+		btnBookHoliday.setFont(new Font("Menlo", Font.PLAIN, 13));
+		btnBookHoliday.setBounds(6, 235, 155, 29);
+		appointmentsView.add(btnBookHoliday);
 		//__________________________________________________________________________
 	}
 	

@@ -157,6 +157,7 @@ public class CancelReBook {
 		
 		
 		JButton button = new JButton(">");
+		button.setFont(new Font("Menlo", Font.PLAIN, 13));
 		button.setBounds(327, 311, 117, 29);
 		button.addActionListener(new ActionListener()
 		{
@@ -177,7 +178,9 @@ public class CancelReBook {
 		    	if (!(panelRebook.isVisible())) {
 		    		
 		    		Appointment.deleteAppointment(startDate1, startTime1, patientNumber1);
-		    		JOptionPane.showMessageDialog((frmRebookCancel.getContentPane()), "Deleted appointment at " + startTime1 + " " +startDate1);	
+		    		JOptionPane.showMessageDialog((frmRebookCancel.getContentPane()), "Deleted appointment at " + startTime1 + " " +startDate1);
+		    		frmRebookCancel.dispose();
+		    		Receptionist r = new Receptionist();
 		    		
 		    	} else {
 		    		String newDate = textField_1.getText();
@@ -192,6 +195,7 @@ public class CancelReBook {
 		frmRebookCancel.getContentPane().add(button);
 		
 		JButton btnCancel_1 = new JButton("Cancel");
+		btnCancel_1.setFont(new Font("Menlo", Font.PLAIN, 13));
 		btnCancel_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frmRebookCancel.dispose();

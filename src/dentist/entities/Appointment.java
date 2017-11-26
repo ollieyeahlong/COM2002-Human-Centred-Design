@@ -286,6 +286,58 @@ public class Appointment {
 	          }
 	 }
 	
+	public static void setNewHoliday(String startDate, String endDate, String partner)    {
+	    PreparedStatement stmt = null;
+        Connection conn = Database.getConnection();
+	    try{
+	    	
+	    	stmt = conn.prepareStatement("INSERT INTO Appointment (startTime, startDate, endDate, partner, patientNumber, endTime) VALUES (?, ?, ?, ?, ?, ?)");
+	    	stmt.setString(1, "00:01:00");
+	    	stmt.setString(2, startDate);
+	    	stmt.setString(3, endDate);
+	    	stmt.setString(4, partner);
+	    	stmt.setString(5, "13");
+	    	stmt.setString(6, "23:59:59");
+
+	    	stmt.executeUpdate();
+
+	          }
+	          catch(Exception e)
+	          {
+	              System.out.println("Error in getData"+e);
+	          }  finally {
+	              Database.closeStatement(conn, stmt);
+	          }
+	 }
+	
+	public static ArrayList<String> getHolidayDates(String partner)    {
+	    ArrayList<String> dateList = new ArrayList<String>();
+	    PreparedStatement stmt = null;
+        Connection conn = Database.getConnection();
+	    try{
+	    	
+	    	stmt = conn.prepareStatement("select startDate, endDate from Appointment WHERE patientNumber = '13' AND partner =?");
+	    	stmt.setString(1, partner);
+	    	ResultSet rs = stmt.executeQuery();
+	    	while(rs.next())
+	    	{
+	    		String startDate = rs.getString(1);
+	    		String endDate = rs.getString(2);
+	    		dateList.add(startDate + endDate); //here you can get data, the '1' indicates column number based on your query
+	    	}
+
+	          }
+	          catch(Exception e)
+	          {
+	              System.out.println("Error in getData"+e);
+	          }  finally {
+	              Database.closeStatement(conn, stmt);
+	          }
+	  		
+
+	    return(dateList);
+	 }
+	
 	public static void deleteAppointment(String startDate1, String startTime1, String patientNumber1)    {
 	    ArrayList<String> dateList = new ArrayList<String>();
 	    PreparedStatement stmt = null;
